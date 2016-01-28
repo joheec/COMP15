@@ -36,7 +36,7 @@ public:
 
         // makes the list empty (very cheap)
 	void make_empty();
-	 
+
         // insert new card at the beginning/end of the list or at given index
 	void insert_at_front(Card c);
 	void insert_at_back(Card c);
@@ -47,18 +47,18 @@ public:
 
         // return card at given index
 	Card card_at(int index);
-	
+
         // return true if the card is in the list, false otherwise
 	bool has_card(Card c);
-	
+
         // remove given card
-	bool remove(Card c); 
+	bool remove(Card c);
 
         // removes first/last card or card at given index
 	Card remove_from_front();
 	Card remove_from_back();
 	Card remove_from_index(int index);
-	
+
         // return number of cards current in the list
 	int cards_in_hand();
 	

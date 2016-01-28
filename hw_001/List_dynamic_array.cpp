@@ -7,14 +7,14 @@ using namespace std;
 
 List_dynamic_array::List_dynamic_array()
 {
-        // TODO: Student writes code here
-	// create list
+        cards = new Card[INITIAL_CAPACITY];
+        hand_capacity = INITIAL_CAPACITY;
+        cards_held = 0;
 }
 
 List_dynamic_array::~List_dynamic_array()
 {
-        // TODO: Student writes code here
-	// delete list
+        delete [] cards;
 }
 
 /*
@@ -35,7 +35,7 @@ List_dynamic_array::List_dynamic_array(const List_dynamic_array &source)
 
 /*
  * explicit operator= overload necessary because of pointer to cards
- * array 
+ * array
  */
 List_dynamic_array
 List_dynamic_array::operator=(const List_dynamic_array &source)
@@ -125,14 +125,14 @@ void List_dynamic_array::insert_at_index(Card c,int index)
 {
 	// if index is greater than cards_held, then fail
 	assert(index <= cards_held);
-	
+
 	// TODO: Student writes code here
 	// check if we need to expand, and expand if necessary
-	
+
 	// move all elements past the insertion point up one
-	
+
 	// insert the card
-	
+
 	// update cards_held
 }
 
@@ -149,7 +149,7 @@ Card List_dynamic_array::card_at(int index)
 {
 	// if index is out of bounds, fail
 	assert (index >= 0 && index < cards_held);
-	
+
 	// return the card at index
 	// TODO: Student writes code heres
 }
@@ -195,7 +195,7 @@ Card List_dynamic_array::remove_from_index(int index)
 {
 	// if the list is empty, fail
 	assert(cards_held > 0);
-	
+
 	// if loc is outside of bounds, fail
 	assert(index >= 0 && index < cards_held);
 
