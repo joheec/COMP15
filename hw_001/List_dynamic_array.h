@@ -67,7 +67,7 @@ private:
 	Card *cards;                              // the array of cards
 	int cards_held;                           // # cards currently in hand
 	int hand_capacity;                        // # cards array can hold
-	void insert_in_hand(int index);		  //inserts in hand using index
+	void expand(int index);                   // expand list when necessary
 };
 
 #endif // List_dynamic_array_h

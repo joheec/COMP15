@@ -51,11 +51,14 @@ int main(int argc, char *argv[])
 		deck.deal_card_from_top(hand1);
 		deck.deal_card_from_top(hand2);
 	}
-//	hand1.order_hand();
-//	hand2.order_hand();
-//	deck.print_hand();
-//	hand1.print_hand();
-//	hand2.print_hand();
+	hand1.order_hand();
+	hand2.order_hand();
+	deck.print_hand();
+	std::cout << "\n";
+	hand1.print_hand();
+	std::cout << "\n";
+	hand2.print_hand();
+	std::cout << "\n";
 	
 	return 0;
 }

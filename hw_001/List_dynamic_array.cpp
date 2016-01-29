@@ -101,33 +101,43 @@ void List_dynamic_array::print_list_int()
 
 void List_dynamic_array::insert_at_front(Card c)
 {
+	++cards_held;
 	if(cards_held >= hand_capacity) {
 		//index = 0 indicates inserting the card at front
-		insert_in_hand(0);
-		cards[0] = c;
+		expand(0);
+	} else {
+		for(int i = 0; i < cards_held; i++) {
+			cards[i + 1] = cards[i];
+		}
 	}
+	cards[0] = c;
 }
 
 void List_dynamic_array::insert_at_back(Card c)
 {
+	++cards_held;
 	if(cards_held >= hand_capacity) {
 		//index = -1 indicates inserting the card at back
-		insert_in_hand(-1);
-		cards[cards_held - 1] = c;
-
+		expand(-1);
 	}
+	cards[cards_held - 1] = c;
 }
 
 void List_dynamic_array::insert_at_index(Card c,int index)
 {
 	// if index is greater than cards_held, then fail
 	assert(index <= cards_held);
-
+	++cards_held;
 	if(cards_held >= hand_capacity) {
 		//index indicates where to insert the card
-		insert_in_hand(index);
-		cards[index] = c;
+		expand(index);
+
+	} else {
+		for(int i = index; i < hand_capacity; i++) {
+			cards[i + 1] = cards[i];
+		}
 	}
+	cards[index] = c;
 }
 
 void List_dynamic_array::replace_at_index(Card c, int index)
@@ -204,9 +214,8 @@ Card List_dynamic_array::remove_from_index(int index)
 	
 }
 
-void List_dynamic_array::insert_in_hand(int index)
+void List_dynamic_array::expand(int index)
 {
-	++cards_held;
 	int new_capacity = (hand_capacity * 2);
 	Card * temp_hand = new Card[new_capacity];
 
