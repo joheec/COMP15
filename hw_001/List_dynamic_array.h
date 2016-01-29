@@ -61,16 +61,13 @@ public:
 
         // return number of cards current in the list
 	int cards_in_hand();
-	
-	//ensures the hand's capacity and inserts in hand using index
-	void insert_in_hand(Card c, int index);
 
 private:
         static const int INITIAL_CAPACITY = 10;   // initial size of our list.
-	void expand();                            // expand list when necessary
 	Card *cards;                              // the array of cards
 	int cards_held;                           // # cards currently in hand
 	int hand_capacity;                        // # cards array can hold
+	void insert_in_hand(Card c, int index);	  //inserts in hand using index
 };
 
 #endif // List_dynamic_array_h

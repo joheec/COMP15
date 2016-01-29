@@ -104,6 +104,7 @@ void List_dynamic_array::insert_at_front(Card c)
 	if(cards_held >= hand_capacity) {
 		//index = 0 indicates inserting the card at front
 		insert_in_hand(c, 0);
+		cards[0] = c;
 	}
 }
 
@@ -112,41 +113,9 @@ void List_dynamic_array::insert_at_back(Card c)
 	if(cards_held >= hand_capacity) {
 		//index = -1 indicates inserting the card at back
 		insert_in_hand(c, -1);
+		cards[cards_held - 1] = c;
 
 	}
-}
-
-void List_dynamic_array::insert_in_hand(Card c, int index)
-{
-	++cards_held;
-	int old_capacity = hand_capacity;
-	int new_capacity = (hand_capacity * 2) + 2;
-	int * temp_hand = new int[new_capacity];
-
-	int index_mod = 0;
-	for(int i = 0; i < cards_held; i++) {
-
-		//where the card is copied to depends on the shift
-		//front: index is 0. Index_mod shifts everything 1
-		//end: index is -1. i will never be -1. No shift
-		//index: shift will occur at index
-		if(i == index) {
-			index_mod = 1;
-		}
-		temp_hand[i + index_mod] = cards[i];
-	}
-
-	switch index {
-
-	}
-	temp_hand[0] = c;
-	temp_hand[old_capacity] = c;
-
-	hand_capacity = new_capacity;
-
-	delete [] cards;
-	cards = temp_hand;
-
 }
 
 void List_dynamic_array::insert_at_index(Card c,int index)
@@ -157,17 +126,7 @@ void List_dynamic_array::insert_at_index(Card c,int index)
 	if(cards_held >= hand_capacity) {
 		//index indicates where to insert the card
 		insert_in_hand(c, index);
-
-
-		for(int i = 0; i < cards_held; i++) {
-
-		}
-
-		temp_hand[index] = c;
-		hand_capacity = new_capacity;
-
-		delete [] cards;
-		cards = temp_hand;
+		cards[index] = c;
 	}
 }
 
@@ -175,34 +134,41 @@ void List_dynamic_array::replace_at_index(Card c, int index)
 {
 	// if index is greater than cards_held-1, then fail
 	assert(index < cards_held);
-
-	// TODO: Student writes code here
-	// replace the card at index with c
+	cards[index] = c;
 }
 
 Card List_dynamic_array::card_at(int index)
 {
 	// if index is out of bounds, fail
 	assert (index >= 0 && index < cards_held);
-
-	// return the card at index
-	// TODO: Student writes code heres
+	return cards[index];
 }
 
 bool List_dynamic_array::has_card(Card c)
 {
-        // TODO: Student writes code here
-        // loop through the cards and use the same_card()
-        // method in Card.cpp to compare the cards
-        // Returns true if the card is in the hand, false otherwise
+	for(int i = 0; i < cards_held; i++) {
+		if(cards[i].same_card(c) == true) {
+			return true;
+		}
+	}
+	return false;
 }
 
 bool List_dynamic_array::remove(Card c)
 {
-        // TODO: Student writes code here
-	// find the card and remove from the hand
-	// Returns true if the card was found and removed,
-	// false otherwise
+	if(has_card(c) == false) {
+        	return false;
+        }
+
+	for(int i = 0; i < cards_held; i++) {
+		if(cards[i].same_card(c) == true) {
+			--cards_held;
+			for(int j = i; j < cards_held; j++) {
+				cards[i] = cards[i+1];
+			}
+			return true;
+		}
+	}
 }
 
 Card List_dynamic_array::remove_from_front()
@@ -210,11 +176,13 @@ Card List_dynamic_array::remove_from_front()
 	// if the list is empty, fail
 	assert(cards_held > 0);
 
-        // TODO: Student writes code here
-        // remove the card at the front, and move all the other
-        // cards back one spot
-        // Returns the card that was removed
+	--cards_held;
+	Card first_card = cards[0];
 
+	for(int i = 0; i < cards_held; i++) {
+		cards[i] = cards[i+1];
+	}
+	return first_card;
 }
 
 Card List_dynamic_array::remove_from_back()
@@ -222,37 +190,43 @@ Card List_dynamic_array::remove_from_back()
 	// if the list is empty, fail
 	assert(cards_held > 0);
 
-        // TODO: Student writes code here
-	// removes the card that is at the back, and returns it
+	--cards_held;
+	return cards[cards_held];
+
 }
 
 Card List_dynamic_array::remove_from_index(int index)
 {
-	// if the list is empty, fail
-	assert(cards_held > 0);
+	--cards_held;
+	Card index_card = cards[index];
 
-	// if loc is outside of bounds, fail
-	assert(index >= 0 && index < cards_held);
-
-        // TODO: Student writes code here
-	// similar to remove_from_front(), but
-	// we remove the card at index
-
-	// Returns the card that was removed
+	for(int i = index; i < cards_held; i++) {
+		cards[i] = cards[i+1];
+	}
+	return index_card;
 	
 }
 
-void List_dynamic_array::expand()
+void List_dynamic_array::insert_in_hand(Card c, int index)
 {
-        // TODO: Student writes code here
-	// five steps
-	// 1. create new list with twice the capacity
+	++cards_held;
+	int new_capacity = (hand_capacity * 2);
+	int * temp_hand = new Card[new_capacity];
 
-	// 2. copy all cards to the new list
+	int index_mod = 0;
+	for(int i = 0; i < cards_held; i++) {
 
-	// 3. delete the old list
+		//where the card is copied to depends on the shift
+		//front: index is 0. Index_mod shifts everything 1
+		//end: index is -1. i will never be -1. No shift
+		//index: shift will occur at index
 
-	// 4. set cards variable to point to the new list
+		if(i == index) {
+			index_mod = 1;
+		}
+		temp_hand[i + index_mod] = cards[i];
+	}
 
-	// 5. update hand_capacity
+	delete [] cards;
+	cards = temp_hand;
 }
