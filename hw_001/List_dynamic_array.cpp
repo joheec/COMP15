@@ -101,24 +101,52 @@ void List_dynamic_array::print_list_int()
 
 void List_dynamic_array::insert_at_front(Card c)
 {
-        // TODO: Student writes code here
-	// check if we need to expand, and expand if necessary
-
-	// move all items over one, starting from the last one
-
-	// insert the new card
-
-	// update cards_held
+	if(cards_held >= hand_capacity) {
+		//index = 0 indicates inserting the card at front
+		insert_in_hand(c, 0);
+	}
 }
 
 void List_dynamic_array::insert_at_back(Card c)
 {
-        // TODO: Student writes code here
-	// check if we need to expand, and expand if necessary
+	if(cards_held >= hand_capacity) {
+		//index = -1 indicates inserting the card at back
+		insert_in_hand(c, -1);
 
-	// insert the new card at the end
+	}
+}
 
-	// update cards_held
+void List_dynamic_array::insert_in_hand(Card c, int index)
+{
+	++cards_held;
+	int old_capacity = hand_capacity;
+	int new_capacity = (hand_capacity * 2) + 2;
+	int * temp_hand = new int[new_capacity];
+
+	int index_mod = 0;
+	for(int i = 0; i < cards_held; i++) {
+
+		//where the card is copied to depends on the shift
+		//front: index is 0. Index_mod shifts everything 1
+		//end: index is -1. i will never be -1. No shift
+		//index: shift will occur at index
+		if(i == index) {
+			index_mod = 1;
+		}
+		temp_hand[i + index_mod] = cards[i];
+	}
+
+	switch index {
+
+	}
+	temp_hand[0] = c;
+	temp_hand[old_capacity] = c;
+
+	hand_capacity = new_capacity;
+
+	delete [] cards;
+	cards = temp_hand;
+
 }
 
 void List_dynamic_array::insert_at_index(Card c,int index)
@@ -126,14 +154,21 @@ void List_dynamic_array::insert_at_index(Card c,int index)
 	// if index is greater than cards_held, then fail
 	assert(index <= cards_held);
 
-	// TODO: Student writes code here
-	// check if we need to expand, and expand if necessary
+	if(cards_held >= hand_capacity) {
+		//index indicates where to insert the card
+		insert_in_hand(c, index);
 
-	// move all elements past the insertion point up one
 
-	// insert the card
+		for(int i = 0; i < cards_held; i++) {
 
-	// update cards_held
+		}
+
+		temp_hand[index] = c;
+		hand_capacity = new_capacity;
+
+		delete [] cards;
+		cards = temp_hand;
+	}
 }
 
 void List_dynamic_array::replace_at_index(Card c, int index)
