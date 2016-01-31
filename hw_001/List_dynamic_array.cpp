@@ -102,24 +102,36 @@ void List_dynamic_array::print_list_int()
 void List_dynamic_array::insert_at_front(Card c)
 {
 	++cards_held;
-	if(cards_held >= hand_capacity) {
-		//index = 0 indicates inserting the card at front
-		expand(0);
-	} else {
-		for(int i = 0; i < cards_held; i++) {
-			cards[i + 1] = cards[i];
-		}
+	if(cards_held > hand_capacity) {
+		expand();
 	}
+
+	Card * temp_hand = new Card[hand_capacity];
+
+	for(int i = 0; i < cards_held; i++) {
+		temp_hand[i + 1] = cards[i];
+	}
+
+	delete [] cards;
+	cards = temp_hand;
 	cards[0] = c;
 }
 
 void List_dynamic_array::insert_at_back(Card c)
 {
 	++cards_held;
-	if(cards_held >= hand_capacity) {
-		//index = -1 indicates inserting the card at back
-		expand(-1);
+	if(cards_held > hand_capacity) {
+		expand();
 	}
+
+	Card * temp_hand = new Card[hand_capacity];
+
+	for(int i = 0; i < cards_held; i++) {
+		temp_hand[i] = cards[i];
+	}
+
+	delete [] cards;
+	cards = temp_hand;
 	cards[cards_held - 1] = c;
 }
 
@@ -127,16 +139,23 @@ void List_dynamic_array::insert_at_index(Card c,int index)
 {
 	// if index is greater than cards_held, then fail
 	assert(index <= cards_held);
-	++cards_held;
-	if(cards_held >= hand_capacity) {
-		//index indicates where to insert the card
-		expand(index);
 
-	} else {
-		for(int i = index; i < hand_capacity; i++) {
-			cards[i + 1] = cards[i];
-		}
+	++cards_held;
+	if(cards_held > hand_capacity) {
+		expand();
 	}
+
+	Card * temp_hand = new Card[hand_capacity];
+	int new_index = 0;
+	for(int i = 0; i < cards_held; i++) {
+		if(i == index) {
+			new_index = 1;
+		}
+		temp_hand[i + new_index] = cards[i];
+	}
+
+	delete [] cards;
+	cards = temp_hand;
 	cards[index] = c;
 }
 
@@ -170,7 +189,7 @@ bool List_dynamic_array::remove(Card c)
 		if(cards[i].same_card(c) == true) {
 			--cards_held;
 			for(int j = i; j < cards_held; j++) {
-				cards[i] = cards[i+1];
+				cards[i] = cards[i + 1];
 			}
 			return true;
 		}
@@ -214,25 +233,7 @@ Card List_dynamic_array::remove_from_index(int index)
 	
 }
 
-void List_dynamic_array::expand(int index)
+void List_dynamic_array::expand()
 {
-	int new_capacity = (hand_capacity * 2);
-	Card * temp_hand = new Card[new_capacity];
-
-	int index_mod = 0;
-	for(int i = 0; i < cards_held; i++) {
-
-		//where the card is copied to depends on the shift
-		//front: index is 0. Index_mod shifts everything 1
-		//end: index is -1. i will never be -1. No shift
-		//index: shift will occur at index
-
-		if(i == index) {
-			index_mod = 1;
-		}
-		temp_hand[i + index_mod] = cards[i];
-	}
-
-	delete [] cards;
-	cards = temp_hand;
+	hand_capacity = hand_capacity * 2;
 }
