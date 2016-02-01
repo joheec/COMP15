@@ -163,7 +163,7 @@ void List_dynamic_array::insert_at_front(Card c)
 		expand();
 	}
 
-	Card * temp_hand = new Card[hand_capacity];
+	Card *temp_hand = new Card[hand_capacity];
 
 	for(int i = 0; i < cards_held; i++) {
 		temp_hand[i + 1] = cards[i];
@@ -187,7 +187,7 @@ void List_dynamic_array::insert_at_back(Card c)
 		expand();
 	}
 
-	Card * temp_hand = new Card[hand_capacity];
+	Card *temp_hand = new Card[hand_capacity];
 
 	for(int i = 0; i < cards_held - 1; i++) {
 		temp_hand[i] = cards[i];
@@ -214,7 +214,7 @@ void List_dynamic_array::insert_at_index(Card c,int index)
 		expand();
 	}
 
-	Card * temp_hand = new Card[hand_capacity];
+	Card *temp_hand = new Card[hand_capacity];
 	int new_index = 0;
 	for(int i = 0; i < cards_held; i++) {
 		if(i == index) {
