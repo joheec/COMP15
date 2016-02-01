@@ -189,7 +189,7 @@ void List_dynamic_array::insert_at_back(Card c)
 
 	Card * temp_hand = new Card[hand_capacity];
 
-	for(int i = 0; i < cards_held; i++) {
+	for(int i = 0; i < cards_held - 1; i++) {
 		temp_hand[i] = cards[i];
 	}
 
