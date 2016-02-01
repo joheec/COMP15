@@ -1,7 +1,10 @@
-#ifndef __hand_h__
-#define __hand_h__
-
-/*
+/* hand.h
+ *
+ *Name: Johee Chung
+ * Due: February 1, 2016
+ * Assignment: Homework 1 / Modeling a deck of cards
+ * Class: COMP 15
+ *
  * A class for representing a collection of Cards.  
  * We'll call it hand, but a deck or discard pile could also
  * be represented with hand.
@@ -11,8 +14,10 @@
  * spades.  Some casinos shuffle multiple decks, so this is actually
  * realistic, but if you want to guard against duplicate cards, the
  * application has to do that.
- *
  */
+
+#ifndef __hand_h__
+#define __hand_h__
 
 #include "card.h"
 #include "List_dynamic_array.h"

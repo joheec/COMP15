@@ -1,4 +1,10 @@
+
 /* card.h
+ *
+ * Name: Johee Chung
+ * Due: February 1, 2016
+ * Assignment: Homework 1 / Modeling a deck of cards
+ * Class: COMP 15
  *
  * Class for representing cards in a standard 52-card deck.  Each
  * card's state is given by  the card's Rank and Suit, e.g., three of
@@ -12,7 +18,6 @@
  * the ace of clubs.
  *
  * Cards are mutable:  their suit and rank are separately settable.
- *
  */
 
 #ifndef __card_h__

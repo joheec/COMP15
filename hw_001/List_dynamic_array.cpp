@@ -1,3 +1,19 @@
+/*
+ * List_dynamic_array.cpp
+ * Name: Johee Chung
+ * Due: February 1, 2016
+ * Assignment: Homework 1 / Modeling a deck of cards
+ * Class: COMP 15
+ *
+ * Create a list using a dynamic array that grows as needed.
+ * The list is comprised of an array of Cards, which can be
+ * inserted, removed, and replaced in a number of different
+ * ways.
+ *
+ * The "front" of the list is at the beginning of the array
+ * The "back"  of the list is at the end of the array
+ */
+
 #include "List_dynamic_array.h"
 
 #include <iostream>
@@ -5,6 +21,9 @@
 
 using namespace std;
 
+/*
+ * Constructor
+ */
 List_dynamic_array::List_dynamic_array()
 {
         cards = new Card[INITIAL_CAPACITY];
@@ -12,6 +31,9 @@ List_dynamic_array::List_dynamic_array()
         cards_held = 0;
 }
 
+/*
+ * Destructor
+ */
 List_dynamic_array::~List_dynamic_array()
 {
         delete [] cards;
@@ -59,22 +81,45 @@ List_dynamic_array::operator=(const List_dynamic_array &source)
 	return *this;
 }
 
+/*
+ * @parameter
+ * @return	bool
+ *
+ * Returns true if there are no cards in the list, otherwise returns false
+ */
 bool List_dynamic_array::is_empty()
 {
         return cards_held == 0;
 }
 
+/*
+ * @parameter
+ * @return
+ *
+ * Sets cards_held to zero showing there are no cards in the list
+ */
 void List_dynamic_array::make_empty()
 {
         cards_held = 0;
 }
 
-
+/*
+ * @parameter
+ * @return	int cards_held	Number of cards held
+ *
+ * Returns the number of elements in the list
+ */
 int List_dynamic_array::cards_in_hand()
 {
         return cards_held;
 }
 
+/*
+ * @parameter
+ * @return
+ *
+ * Prints a list in human-readable form
+ */
 void List_dynamic_array::print_list()
 {
 	for (int i = 0; i < cards_held; i++) {
@@ -87,6 +132,12 @@ void List_dynamic_array::print_list()
 	}
 }
 
+/*
+ * @parameter
+ * @return
+ *
+ * Prints the list as integers based on rank and suit
+ */
 void List_dynamic_array::print_list_int()
 {
 	for (int i = 0; i < cards_held; i++) {
@@ -99,6 +150,12 @@ void List_dynamic_array::print_list_int()
 	}
 }
 
+/*
+ * @parameter	Card c	The inserted card
+ * @return
+ *
+ * Inserts a card at the beginning of the list
+ */
 void List_dynamic_array::insert_at_front(Card c)
 {
 	++cards_held;
@@ -117,6 +174,12 @@ void List_dynamic_array::insert_at_front(Card c)
 	cards[0] = c;
 }
 
+/*
+ * @parameter	Card c	The inserted card
+ * @return
+ *
+ * Inserts a card at the end of the list
+ */
 void List_dynamic_array::insert_at_back(Card c)
 {
 	++cards_held;
@@ -135,6 +198,12 @@ void List_dynamic_array::insert_at_back(Card c)
 	cards[cards_held - 1] = c;
 }
 
+/*
+ * @parameter	Card c	The inserted card
+ * @return
+ *
+ * Inserts a card at a given index
+ */
 void List_dynamic_array::insert_at_index(Card c,int index)
 {
 	// if index is greater than cards_held, then fail
@@ -159,6 +228,13 @@ void List_dynamic_array::insert_at_index(Card c,int index)
 	cards[index] = c;
 }
 
+/*
+ * @parameter	Card c		The card placed in the list
+ * 		int index	Where the card is placed
+ * @return
+ *
+ * Replaces card at given index
+ */
 void List_dynamic_array::replace_at_index(Card c, int index)
 {
 	// if index is greater than cards_held-1, then fail
@@ -166,6 +242,12 @@ void List_dynamic_array::replace_at_index(Card c, int index)
 	cards[index] = c;
 }
 
+/*
+ * @parameter	int index	Where the card is in the list
+ * @return
+ *
+ * Returns a card at the index
+ */
 Card List_dynamic_array::card_at(int index)
 {
 	// if index is out of bounds, fail
@@ -173,6 +255,12 @@ Card List_dynamic_array::card_at(int index)
 	return cards[index];
 }
 
+/*
+ * @parameter	Card c	The card to search for
+ * @return	bool
+ *
+ * Returns true if c is in the list, otherwise returns false.
+ */
 bool List_dynamic_array::has_card(Card c)
 {
 	for(int i = 0; i < cards_held; i++) {
@@ -183,6 +271,12 @@ bool List_dynamic_array::has_card(Card c)
 	return false;
 }
 
+/*
+ * @parameter	Card c	The card to remove
+ * @return	bool
+ *
+ * Returns true if Card c is found and removed, otherwise returns false.
+ */
 bool List_dynamic_array::remove(Card c)
 {
 	for(int i = 0; i < cards_held; i++) {
@@ -197,6 +291,12 @@ bool List_dynamic_array::remove(Card c)
 	return false;
 }
 
+/*
+ * @parameter
+ * @return	Card first_card		The removed card
+ *
+ * Removes the first card in the list and returns the card
+ */
 Card List_dynamic_array::remove_from_front()
 {
 	// if the list is empty, fail
@@ -211,6 +311,13 @@ Card List_dynamic_array::remove_from_front()
 	return first_card;
 }
 
+/*
+ * @parameter
+ * @return	Card cards[cards_held]		The removed card
+ *
+ * Removes the last card in the list by subtracting 1
+ * from cards_held and returns the last card
+ */
 Card List_dynamic_array::remove_from_back()
 {
 	// if the list is empty, fail
@@ -221,6 +328,12 @@ Card List_dynamic_array::remove_from_back()
 
 }
 
+/*
+ * @parameter	int index	Where to remove a card
+ * @return	Card index_card	The removed card
+ *
+ * Removes a cards at the index and returns the removed card
+ */
 Card List_dynamic_array::remove_from_index(int index)
 {
 	--cards_held;
@@ -233,6 +346,12 @@ Card List_dynamic_array::remove_from_index(int index)
 	
 }
 
+/*
+ * @parameter
+ * @return
+ *
+ * Doubles the hand_capacity
+ */
 void List_dynamic_array::expand()
 {
 	hand_capacity = hand_capacity * 2;

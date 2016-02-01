@@ -1,13 +1,11 @@
 /*
+ * File: main.cpp
+ * Name: Johee Chung
+ * Due: February 1, 2016
+ * Assignment: Homework 1 / Modeling a deck of cards
+ * Class: COMP 15
+ *
  * A simple program that uses hands of cards.
- *
- * It just does some simple tests.
- * You should write other tests, which you can include here, and you
- * can write other test files.
- *
- * If you're doing well and ambitious, are encouraged to write a real
- * application, including one that plays a game.  Have fun with it!
- *
  */
 
 #include <iostream>
@@ -54,11 +52,8 @@ int main(int argc, char *argv[])
 	hand1.order_hand();
 	hand2.order_hand();
 	deck.print_hand();
-	std::cout << "\n";
 	hand1.print_hand();
-	std::cout << "\n";
 	hand2.print_hand();
-	std::cout << "\n";
 	
 	return 0;
 }

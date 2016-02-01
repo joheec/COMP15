@@ -1,13 +1,18 @@
-// List_dynamic_array.h
-// The List_dynamic_array header
-
-// Purpose:  Create a list using a dynamic array that grows as needed.
-//           The list is comprised of an array of Cards, which can be
-//           inserted, removed, and replaced in a number of different
-//           ways.
-//
-//           The "front" of the list is at the beginning of the array
-//           The "back"  of the list is at the end of the array
+/* List_dynamic_array.h
+ *
+ * Name: Johee Chung
+ * Due: February 1, 2016
+ * Assignment: Homework 1 / Modeling a deck of cards
+ * Class: COMP 15
+ *
+ * Create a list using a dynamic array that grows as needed.
+ * The list is comprised of an array of Cards, which can be
+ * inserted, removed, and replaced in a number of different
+ * ways.
+ *
+ * The "front" of the list is at the beginning of the array
+ * The "back"  of the list is at the end of the array
+ */
 
 
 #ifndef List_dynamic_array_h
