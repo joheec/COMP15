@@ -163,9 +163,9 @@ void List_dynamic_array::insert_at_front(Card c)
 		expand();
 	}
 
-	Card * temp_hand = new Card[hand_capacity];
+	Card *temp_hand = new Card[hand_capacity];
 
-	for(int i = 0; i < cards_held; i++) {
+	for(int i = 0; i < cards_held - 1; i++) {
 		temp_hand[i + 1] = cards[i];
 	}
 
@@ -185,16 +185,16 @@ void List_dynamic_array::insert_at_back(Card c)
 	++cards_held;
 	if(cards_held > hand_capacity) {
 		expand();
+		Card *temp_hand = new Card[hand_capacity];
+		
+		for(int i = 0; i < cards_held - 1; i++) {
+			temp_hand[i] = cards[i];
+		}
+		
+		delete [] cards;
+		cards = temp_hand;
 	}
 
-	Card * temp_hand = new Card[hand_capacity];
-
-	for(int i = 0; i < cards_held; i++) {
-		temp_hand[i] = cards[i];
-	}
-
-	delete [] cards;
-	cards = temp_hand;
 	cards[cards_held - 1] = c;
 }
 
@@ -214,13 +214,17 @@ void List_dynamic_array::insert_at_index(Card c,int index)
 		expand();
 	}
 
-	Card * temp_hand = new Card[hand_capacity];
-	int new_index = 0;
-	for(int i = 0; i < cards_held; i++) {
+	Card *temp_hand = new Card[hand_capacity];
+	int index_mod = 0;
+	for(int i = 0; i < cards_held - 1; i++) {
+		
+		//index_mod uses the parameter 'index' to determine when to 
+		//skip an element in temp_hand 
+		//to leave room for the inserted card
 		if(i == index) {
-			new_index = 1;
+			index_mod = 1;
 		}
-		temp_hand[i + new_index] = cards[i];
+		temp_hand[i + index_mod] = cards[i];
 	}
 
 	delete [] cards;
