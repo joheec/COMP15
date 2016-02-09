@@ -261,11 +261,15 @@ bool List_linked_list::has_card(Card c)
 	}
 
 	Card_Node * curr = front;
-	while((curr->card != c) && (curr->next != NULL)) {
+
+	std::cout << typeid(curr->card).name();
+	std::cout << typeid(c).name();
+
+	while((!c.same_card(curr->card)) && (curr->next != NULL)) {
 		curr = curr->next;
 	}
 
-	if(curr->card == c) {
+	if(c.same_card(curr->card)) {
 		return true;
 	} else {
 		return false;
@@ -283,12 +287,12 @@ bool List_linked_list::remove(Card c)
 
 	Card_Node * curr = front;
 	Card_Node * prev = NULL;
-	while(curr->card != c && curr->next != NULL) {
+	while((!c.same_card(curr->card)) && curr->next != NULL) {
 		prev = curr;
 		curr = curr->next;
 	}
 
-	if(curr->card == c) {
+	if(c.same_card(curr->card)) {
 		prev->next = curr->next;
 		delete curr;
 		return true;
@@ -304,8 +308,7 @@ bool List_linked_list::remove(Card c)
 Card List_linked_list::remove_from_front()
 {
 	assert(front != NULL);
-	Card c = new Card;
-	c = front->card;
+	Card c = front->card;
 	Card_Node * next = front->next;
 	delete front;
 	front = next;
@@ -324,8 +327,7 @@ Card List_linked_list::remove_from_back()
 		prev = curr;
 		curr = curr->next;
 	}
-	Card c = new Card;
-	c = curr->card;
+	Card c = curr->card;
 	delete curr;
 	if(front->next == NULL) {
 		front = NULL;
@@ -341,7 +343,7 @@ Card List_linked_list::remove_from_back()
 Card List_linked_list::remove_from_index(int index)
 {
 	assert(index < cards_in_hand());
-	Card c = new Card;
+	Card c;
 	if(index == 0) {
 		c = front->card;
 		delete front;
