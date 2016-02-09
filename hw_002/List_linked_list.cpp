@@ -262,9 +262,6 @@ bool List_linked_list::has_card(Card c)
 
 	Card_Node * curr = front;
 
-	std::cout << typeid(curr->card).name();
-	std::cout << typeid(c).name();
-
 	while((!c.same_card(curr->card)) && (curr->next != NULL)) {
 		curr = curr->next;
 	}
