@@ -366,18 +366,22 @@ bool List_linked_list::remove(Card c)
 
 	Card_Node * curr = front;
 	Card_Node * prev = NULL;
-	while((!c.same_card(curr->card)) && curr->next != NULL) {
+
+	while(curr != NULL) {
+		if(c.same_card(curr->card)){
+			if(front == curr) {
+				front = curr->next;
+			} else {
+				prev->next = curr->next;
+			}
+			delete curr;
+			return true;
+		}
 		prev = curr;
 		curr = curr->next;
 	}
 
-	if(c.same_card(curr->card)) {
-		prev->next = curr->next;
-		delete curr;
-		return true;
-	} else {
-		return false;
-	}
+	return false;
 }
 
 /*
