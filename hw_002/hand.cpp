@@ -1,3 +1,21 @@
+/*
+ * hand.cpp
+ * Name: Johee Chung
+ * Due: February 16, 2016
+ * Assignment: Homework 2 / Modeling a deck of cards
+ * Class: COMP 15
+ *
+ * A class for representing a collection of Cards.
+ * We'll call it hand, but a deck or discard pile could also
+ * be represented with hand.
+ *
+ * The current implementation does not restrict a hand from having
+ * more than one of the same card, e.g., there could be 5 jacks of
+ * spades.  Some casinos shuffle multiple decks, so this is actually
+ * realistic, but if you want to guard against duplicate cards, the
+ * application has to do that.
+ */
+
 #include <iostream>
 #include <sstream>
 #include <cstdlib>

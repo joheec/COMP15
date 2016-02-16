@@ -1,4 +1,23 @@
-// card.cpp
+/*
+ * File: card.cpp
+ * Name: Johee Chung
+ * Due: February 16, 2016
+ * Assignment: Homework 2 / Modeling a deck of cards
+ * Class: COMP 15
+ *
+ * Class for representing cards in a standard 52-card deck.  Each
+ * card's state is given by  the card's Rank and Suit, e.g., three of
+ * diamonds.
+ *
+ * We supply enumerations for usual four suits (Clubs, Diamonds,
+ * Hearts, and Spades) and for the usual ranks (2 -- 10 and the four
+ * face cards).
+ *
+ * The default card (the one you get from the default constructor) is
+ * the ace of clubs.
+ *
+ * Cards are mutable:  their suit and rank are separately settable.
+ */
 
 #include <iostream>
 #include <sstream>

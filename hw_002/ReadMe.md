@@ -1,35 +1,46 @@
 # ReadMe for COMP 15 HW2 
 ## Dynamic Arrays
 
-Every assignment you submit you will include a ReadMe file. The name
-could be ReadMe, readme, Read-me.txt, readME, ReadMe.md (the “.md”
-stands for “markdown,” which allows lightweight formatting) or almost
-anything you like that has the word read followed by the word me. Exact
-spelling is not important, the contents are.
+Purpose:
+*	This program allows a user to create a 52-card deck.
+*	Each card has a suit (C, D, H, S) and a rank 
+	(2, 3, 4, 5, 6, 7, 8, 9, T, J, Q, K, A).
+*	A user can draw from the top or bottom of the deck to create a hand
+*	A user can shuffle the deck and order their hand.
 
-The purpose of the ReadMe file is the same as the little paper insert
-you get in a new appliance -- to give the reader an introduction and
-overview of the product.
+List of files:
+*	card.cpp & card.h: Creates individual cards, which are defined by
+	suit and rank. Provides functions to set the cards,
+	get information about the cards, and see if cards are the same.
+*	List_linked_list.cpp & List_linked.list.h: A linked list that
+	represents a pile/hand of cards. Provides functions that insert and
+	remove cards anywhere in the pile/hand and get information about the
+	cards.
+*	hand.cpp & hand.h: Creates and interacts with a pile/hand of cards.
+*	main.cpp: Creates and interacts a hand and deck of cards. Also creates
+	a card.
 
-Your ReadMe file for the assignments **must** include:
+How to compile:
+*	Use included Makefile
 
-1.  The purpose of your program
+Data structure:
+*	Uses a singly linked list comprised of card nodes. The card nodes
+	is made up of a card and a pointer to the next card node in the list.
+	There is a front pointer pointing to the first card node in the list.
 
-2.  List of files with one/or two-line summary
+Outline of algorithm
+*	When inserting a card, create a card node with the parameter. Do not
+	create a card node if replacing or removing a card. 
+*	Transverse the linked list until reaching the card node before the 
+	given position, given index, or finding the given card. If replacing 
+	a card, transverse to the desired card node and set the card (in the 
+	card node) to the given card. 
+*	If inserting, point the new card node pointer to the next card node in 
+	the list. If there are no card nodes after, set the pointer to NULL.
+*	If inserting, set the previous card node pointer tot he new card node.
+	If removing, set the previous card node pointer to the next card node
+	and delete the desired card node. If the card node is the first node
+	in the list, the "previous" pointer will be the front pointer.
 
-3.  How to compile it (saying "use included Makefile" is ok)
-
-4.  Outline of data structure (depending on the assignment)
-
-5.  Outline of algorithm (depending on the assignment)
-
-The ReadMe file shows the reader, in a quick glance, what the program is
-about and gives a general idea of how it works. For short programs the
-readme file will be short, for more complicated programs the readme file
-will be longer.
-
-Use outline form rather than long discursive paragraphs. A ReadMe file
-is an overview.
-
-There is no correct readme format; within these guidelines, devise your
-own style.
+Acknowledgements:
+*	Original credit goes to Tufts University. 
