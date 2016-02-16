@@ -10,12 +10,12 @@ int main(int argc, char **argv)
 	Hand deck, deck2, hand1, hand2;
 
 	deck.create_deck();
-	//deck.read_deck();
+	deck.read_deck();
 	deck.print_hand();
 
 	Card c('3', 'H');
 
-	//deck.remove_card(c);
+	deck.remove_card(c);
 
 	deck.shuffle();
 	deck.print_hand_int();
