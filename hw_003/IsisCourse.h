@@ -104,9 +104,9 @@ public:
         // etc.
         void print_list(ENROLLMENT_STATUS status);
 private:
-        Set roster;               // the roster for the course
-        Queue major_waitlist;     // the waitlist for majors
-        Queue other_waitlist;     // the waitlist for non-majors
+//        Set roster;               // the roster for the course
+//        Queue major_waitlist;     // the waitlist for majors
+//        Queue other_waitlist;     // the waitlist for non-majors
         int class_capacity;       // the class capacity
 };
 

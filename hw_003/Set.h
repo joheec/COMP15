@@ -32,6 +32,14 @@ public:
 
 private:
         // TODO --- students choose representation
+
+        struct Student_Node
+        {
+        	Student student;
+        	Student_Node * next;
+        };
+        Student_Node * front;
+        int class_size;
 };
 
 #endif /* SET_H_ */

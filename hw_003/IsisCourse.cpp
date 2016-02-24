@@ -19,6 +19,8 @@ IsisCourse::IsisCourse()
 IsisCourse::IsisCourse(int init_capacity)
 {
         // TODO: Student writes code here
+	(void) init_capacity;
+	class_capacity = 0;
 }
 
 IsisCourse::~IsisCourse()
@@ -28,13 +30,14 @@ IsisCourse::~IsisCourse()
 
 void IsisCourse::set_class_cap(int cap)
 {
-        if (cap < class_capacity)
-                throw runtime_error("IsisCourse:  "
-                                    "class capacity cannot be lowered");
-        class_capacity = cap;
-        if (roster.size() < class_capacity) {
-                update_enrollments();
-        }
+	(void) cap;
+//        if (cap < class_capacity)
+//                throw runtime_error("IsisCourse:  "
+//                                    "class capacity cannot be lowered");
+//        class_capacity = cap;
+//        if (roster.size() < class_capacity) {
+//                update_enrollments();
+//        }
 }
 
 /*
@@ -44,24 +47,28 @@ void IsisCourse::set_class_cap(int cap)
 IsisCourse::ENROLLMENT_STATUS IsisCourse::enroll_student(Student s)
 {
         // TODO: Student writes code here
+	(void) s;
+	return NONE;
 }
 
 bool IsisCourse::drop_student(Student s)
 {
         bool found_student = false;     // if we find the student to drop
         // TODO: Student writes code here
-
+        (void) s;
 
         // if we dropped a student, there should be room on
         // the roster
-        update_enrollments();
+//        update_enrollments();
         return found_student;
 }
 
 int IsisCourse::waitlist_position(ENROLLMENT_STATUS status, Student s)
 {
         // TODO: Student writes code here
-
+	(void) status;
+	(void) s;
+	return 3;
 }
 
 /* 
@@ -71,25 +78,28 @@ int IsisCourse::waitlist_position(ENROLLMENT_STATUS status, Student s)
 IsisCourse::ENROLLMENT_STATUS IsisCourse::status(Student s)
 {
         // TODO: Student writes code here
+	(void) s;
+	return NONE;
 }
 
 void IsisCourse::print_list(ENROLLMENT_STATUS status)
 {
-        Queue *waitlist_queue;
-        Queue  temp_queue;
-
-        if (status == ENROLLED) {
-                roster.print_class();
-                return;
-        }
-        if (status == MAJOR_WAITLIST) {
-                waitlist_queue = &major_waitlist;
-        } else {
-                waitlist_queue = &other_waitlist;
-        }
+//        Queue *waitlist_queue;
+//        Queue  temp_queue;
+//
+//        if (status == ENROLLED) {
+//                roster.print_class();
+//                return;
+//        }
+//        if (status == MAJOR_WAITLIST) {
+//                waitlist_queue = &major_waitlist;
+//        } else {
+//                waitlist_queue = &other_waitlist;
+//        }
         // now handle printing the queue
 
         // TODO: Student writes code here
+	(void) status;
 }
 
 /*
