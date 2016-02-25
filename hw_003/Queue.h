@@ -34,20 +34,13 @@ public:
         bool is_empty();
 
 private:
-        // The private section of this header file assumes
-        // you will use a dynamic array for your queue.
-        // Feel free to use a linked-list instead.
-        // You may update the private section of this class, but
-        // not the public section.
+        struct Student_Node {
+        	Student student;
+        	Student_Node * next;
+        };
+        Student_Node * front;
 
-        static const int QUEUE_INIT_CAPACITY = 2;
-
-        Student *queue_array;  // the dynamic array for the queue
-        int      capacity;     // the capacity of the queue 
-        int      size;         // how many characters there are in the queue
-        int      front;        // the front of the queue
-        int      back;         // the back of the queue
-        void     expand();     // expand the circular queue
+        int queue_size;
 };
 
 #endif /* QUEUE_H_ */

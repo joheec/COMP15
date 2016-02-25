@@ -12,6 +12,7 @@
 
 //TODO temp for testing
 #include "Set.h"
+#include "Queue.h"
 
 using namespace std;
 
@@ -114,14 +115,36 @@ using namespace std;
 ////	cerr << "\nnot enrolled " << temp_set->is_enrolled(students[2]);
 //	return true;
 //}
+//
+//bool test_queue()
+//{
+//	Student s[2] = {
+//		Student("Johee Chung", true),
+//		Student("Steph Alkatib", false)
+//	};
+//
+//	Queue * q = new Queue;
+//
+//	for(int i = 0; i < 2; i++) {
+//		q->enqueue(s[i]);
+//	}
+//
+//	for(int i = 0; i < 2; i++) {;
+//		cerr << q->dequeue().name << "\n";
+//	}
+//
+//	return q->is_empty();
+//}
 
 int main()
 {
 //	if(test_set()) {
 //		cout << "\nWorks!";
 //	}
-
-
+//
+//	if(test_queue()) {
+//		cerr << "Works!\n";
+//	}
 
 
 //        Student students[NUM_STUDENTS] = {
