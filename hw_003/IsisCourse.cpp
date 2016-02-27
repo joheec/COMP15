@@ -18,9 +18,7 @@ IsisCourse::IsisCourse()
 
 IsisCourse::IsisCourse(int init_capacity)
 {
-        // TODO: Student writes code here
-	(void) init_capacity;
-	class_capacity = 0;
+        class_capacity = init_capacity;
 }
 
 IsisCourse::~IsisCourse()
@@ -30,14 +28,13 @@ IsisCourse::~IsisCourse()
 
 void IsisCourse::set_class_cap(int cap)
 {
-	(void) cap;
-//        if (cap < class_capacity)
-//                throw runtime_error("IsisCourse:  "
-//                                    "class capacity cannot be lowered");
-//        class_capacity = cap;
-//        if (roster.size() < class_capacity) {
-//                update_enrollments();
-//        }
+        if (cap < class_capacity)
+                throw runtime_error("IsisCourse:  "
+                                    "class capacity cannot be lowered");
+        class_capacity = cap;
+        if (roster.size() < class_capacity) {
+                update_enrollments();
+        }
 }
 
 /*

@@ -58,20 +58,22 @@ using namespace std;
 //                }
 //}
 //
-//bool test_set()
-//{
-//	Set * temp_set = new Set;
-//
-//	Student students[3] = {
-//		Student("Chung, Johee",true),
-//		Student("Green,Alice", true),
-//		Student("Blue,Misha", false),
-//	};
-//
-//	//adding students
-//	for(int i = 0; i < 2; i++) {
-//		temp_set->add(students[i]);
-//	}
+bool test_set()
+{
+	Set * temp_set = new Set;
+
+	Student students[3] = {
+		Student("Chung, Johee",true),
+		Student("Green,Alice", true),
+		Student("Chung, Johee", true),
+	};
+
+	//adding students
+	for(int i = 0; i < 2; i++) {
+		if(!temp_set->add(students[i])) return false;
+	}
+
+	return true;
 //
 //	temp_set->print_class();
 //
@@ -114,7 +116,7 @@ using namespace std;
 ////	//is enrolled
 ////	cerr << "\nnot enrolled " << temp_set->is_enrolled(students[2]);
 //	return true;
-//}
+}
 //
 //bool test_queue()
 //{
@@ -138,15 +140,15 @@ using namespace std;
 
 int main()
 {
-//	if(test_set()) {
-//		cout << "\nWorks!";
-//	}
-//
+	if(!test_set()) {
+		cout << "\nWorks!";
+	}
+
 //	if(test_queue()) {
 //		cerr << "Works!\n";
 //	}
-
-
+//
+//
 //        Student students[NUM_STUDENTS] = {
 //                        Student("Green,Alice",     true),
 //                        Student("Blue,Misha",      false),

@@ -39,8 +39,6 @@ private:
         	Student_Node * next;
         };
         Student_Node * front;
-
-        int queue_size;
 };
 
 #endif /* QUEUE_H_ */
