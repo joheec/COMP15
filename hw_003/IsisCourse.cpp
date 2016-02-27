@@ -6,6 +6,7 @@
 #include <iostream>
 #include <exception>
 #include <stdexcept>
+#include <cassert>
 
 using std::runtime_error;
 
@@ -18,9 +19,7 @@ IsisCourse::IsisCourse()
 
 IsisCourse::IsisCourse(int init_capacity)
 {
-        // TODO: Student writes code here
-	(void) init_capacity;
-	class_capacity = 0;
+	class_capacity = init_capacity;
 }
 
 IsisCourse::~IsisCourse()
@@ -30,14 +29,13 @@ IsisCourse::~IsisCourse()
 
 void IsisCourse::set_class_cap(int cap)
 {
-	(void) cap;
-//        if (cap < class_capacity)
-//                throw runtime_error("IsisCourse:  "
-//                                    "class capacity cannot be lowered");
-//        class_capacity = cap;
-//        if (roster.size() < class_capacity) {
-//                update_enrollments();
-//        }
+        if (cap < class_capacity)
+                throw runtime_error("IsisCourse:  "
+                                    "class capacity cannot be lowered");
+        class_capacity = cap;
+        if (roster.size() < class_capacity) {
+                update_enrollments();
+        }
 }
 
 /*
@@ -46,9 +44,25 @@ void IsisCourse::set_class_cap(int cap)
  */
 IsisCourse::ENROLLMENT_STATUS IsisCourse::enroll_student(Student s)
 {
-        // TODO: Student writes code here
-	(void) s;
-	return NONE;
+	// Attempts to enroll a student into the class.
+	// Majors go directly into the class, and non-majors
+	// go directly onto the waitlist, even if there is space
+	// in the class.
+	// Simplification:  You do not need to check if a student is
+	// on a waitlist already before placing that student onto
+	// the appropriate waitlist.
+
+	if(s.major) {
+		if(!roster.add(s)) {
+			major_waitlist.enqueue(s);
+			return MAJOR_WAITLIST;
+		} else {
+			return ENROLLED;
+		}
+	} else {
+		other_waitlist.enqueue(s);
+		return OTHER_WAITLIST;
+	}
 }
 
 bool IsisCourse::drop_student(Student s)

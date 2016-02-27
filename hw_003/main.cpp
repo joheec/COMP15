@@ -136,6 +136,20 @@ using namespace std;
 //	return q->is_empty();
 //}
 
+bool test_isis_course() {
+//	Student students[3] = {
+//		Student("Chung, Johee",true),
+//		Student("Green,Alice", true),
+//		Student("Blue,Misha", false),
+//	};
+
+	IsisCourse course(5);
+//	course.set_class_cap(2);
+	course.set_class_cap(6);
+	cerr << 'Class capacity: ' << course.class_capacity;
+	return true;
+}
+
 int main()
 {
 //	if(test_set()) {
@@ -145,6 +159,10 @@ int main()
 //	if(test_queue()) {
 //		cerr << "Works!\n";
 //	}
+
+	if(test_isis_course()) {
+		cerr << "Works!\n";
+	}
 
 
 //        Student students[NUM_STUDENTS] = {
