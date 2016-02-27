@@ -57,10 +57,11 @@ Set::~Set()
  * @parameter	Student	s	A student that contains their name and whether
  * 				they are a major or non-major.
  * @return	bool		Returns true after a student is added to the
- * 				set.
+ * 				set. Returns false if the student is already
+ * 				in the set.
  *
  * Creates a student node with the student information and adds the student
- * node to the front of the linked list.
+ * node to the back of the linked list if the student does not already exist.
  */
 bool Set::add(Student s)
 {
@@ -75,6 +76,10 @@ bool Set::add(Student s)
 	} else {
 		Student_Node * temp = front;
 		while(temp->next != NULL) {
+			if(temp->student.name == s.name) {
+				delete new_node;
+				return false;
+			}
 			temp = temp->next;
 		}
 		temp->next = new_node;
