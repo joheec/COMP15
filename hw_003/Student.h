@@ -1,5 +1,9 @@
 /*
- * Student.h
+ * File: Student.h
+ * Name: Johee Chung
+ * Due: February 29, 2016
+ * Assignment: Homework 3 / ISIS Course
+ * Class: COMP 15
  *
  * This header file defines a Student struct.
  *
@@ -8,8 +12,6 @@
  *
  * You may not have seen constructors in a struct before,
  * but you can use them in C++.
- *
- * Do not change this file.
  */
 
 #ifndef STUDENT_H_

@@ -1,13 +1,14 @@
 /*
- * Queue.h
+ * File: Queue.h
+ * Name: Johee Chung
+ * Due: February 29, 2016
+ * Assignment: Homework 3 / ISIS Course
+ * Class: COMP 15
  *
  * This is the header for a Queue with the following methods:
  * void enqueue(Student c);
  * Student dequeue();
  * bool is_empty();
- *
- * You may add private members to this class, but you cannot change
- * the public section.
  */
 
 #ifndef QUEUE_H_
@@ -17,20 +18,12 @@
 
 class Queue {
 public:
-        // constructor
         Queue();
-
-        // destructor
         ~Queue();
 
-        // enqueue a student onto at the back of the queue
-        void enqueue(Student stu);
-
-        // dequeue a student from the front of the queue
+        void enqueue(Student s);
         Student dequeue();
 
-        // returns true if there are no elements in the
-        // queue, false if the queue has elements
         bool is_empty();
 
 private:

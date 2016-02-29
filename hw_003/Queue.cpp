@@ -1,7 +1,16 @@
 /*
- * Queue.cpp
+ * File: Queue.cpp
+ * Name: Johee Chung
+ * Due: February 29, 2016
+ * Assignment: Homework 3 / ISIS Course
+ * Class: COMP 15
  *
+ * Uses a singly linked list to represent a Queue with the following methods:
+ * void enqueue(Student c);
+ * Student dequeue();
+ * bool is_empty();
  */
+
 #include <iostream>
 #include "Queue.h"
 #include <cassert>

@@ -1,5 +1,9 @@
 /*
- * IsisCourse.h
+ * File: IsisCourse.h
+ * Name: Johee Chung
+ * Due: February 29, 2016
+ * Assignment: Homework 3 / ISIS Course
+ * Class: COMP 15
  *
  * This class holds a roster (Set), and two waitlists (Queues)
  * for a Tufts course.
@@ -42,66 +46,20 @@ public:
         // OTHER_WAITLIST: on the non-majors' waitlist
         enum ENROLLMENT_STATUS {NONE, ENROLLED, MAJOR_WAITLIST, OTHER_WAITLIST};
 
-        // no-argument constructor
         IsisCourse();
-
-        // constructor with initial capacity
         IsisCourse(int init_capacity);
-
-        // destructor
         ~IsisCourse();
 
-        // Update the class capacity.  Only increases are allowed.
-        // When you update the capacity,
-        // you must also move students off of the waitlists (if any are
-        // on the waitlists).  Students from the major waitlist move
-        // into the class first, then students from the other waitlist
-        // go into the class.  The class can never have more students
-        // than the capacity.
         void set_class_cap(int cap);
-
-        // returns class capacity
         int get_class_cap();
 
-        // Attempts to enroll a student into the class.
-        // Majors go directly into the class, and non-majors
-        // go directly onto the waitlist, even if there is space
-        // in the class.
-        // Simplification:  You do not need to check if a student is
-        // on a waitlist already before placing that student onto
-        // the appropriate waitlist.
         ENROLLMENT_STATUS enroll_student(Student s);
-
-        // Attempts to drop a student from the class AND the waitlists
-        // Returns true if student was successfully dropped,
-        // false if the student was not on any list
         bool drop_student(Student s);
-
-        // Updates the enrollment for the class up to the capacity.
-        // This is always executed when the capacity is increased,
-        // but can also be executed to fill up the class to its
-        // current capacity.
         void update_enrollments();
 
-        // returns the number of students enrolled in the course
         int get_roster_size();
-
-        // returns the waitlist position for a student for a
-        // particular waitlist (MAJOR_WAITLIST or OTHER_WAITLIST)
         int waitlist_position(ENROLLMENT_STATUS status, Student s);
-
-        // returns the status of a student (NONE, ENROLLED,
-        // MAJOR_WAITLIST, or OTHER_WAITLIST)
         ENROLLMENT_STATUS status(Student s);
-
-        // prints the roster (ENROLLED) or waitlist
-        // (either MAJOR_WAITLIST or OTHER_WAITLIST)
-        // in the following form (names should be in order of priority
-        // from the waitlist):
-        // 1. student.name
-        // 2. student.name
-        // 3. student.name
-        // etc.
         void print_list(ENROLLMENT_STATUS status);
 private:
         Set roster;               // the roster for the course

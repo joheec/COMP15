@@ -1,8 +1,17 @@
 /*
- * Set.cpp
+ * File: Set.cpp
+ * Name: Johee Chung
+ * Due: February 29, 2016
+ * Assignment: Homework 3 / ISIS Course
+ * Class: COMP 15
  *
- * Add your code below.  Do not change the print function.
- *
+ * This class is a Set, which holds Students.
+ * The Set has the following public methods:
+ * bool Set::add(Student s)
+ * bool drop(Student s);
+ * bool is_enrolled(Student s);
+ * void print_class();
+ * int size();
  */
 
 #include <iostream>
