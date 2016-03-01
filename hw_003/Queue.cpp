@@ -79,7 +79,9 @@ Student Queue::dequeue()
 {
 	Student_Node * temp = front;
 	front = front->next;
-	return temp->student;
+	Student s = temp->student;
+	delete temp;
+	return s;
 }
 
 /*

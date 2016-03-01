@@ -53,7 +53,5 @@ ALGORITHM:
 	Continue dequeuing and enqueuing until the waitlist is empty. Then 
 	dequeue all the nodes from the temp queue to the waitlist. 
 
-5.  Outline of algorithm (depending on the assignment)
-
 ACKNOWLEDGEMENTS:
 	* Original credit goes to Tufts University.
