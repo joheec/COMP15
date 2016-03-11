@@ -109,55 +109,56 @@ Node *BinarySearchTree::pre_order_copy(Node *node) const
 
 int BinarySearchTree::find_min() const
 {
-//        if (root == NULL)
-//                return INT_MIN;
-//        return find_min(root)->data;
-
-	//TESTING
-	return 0;
+        if (root == NULL)
+                return INT_MIN;
+        return find_min(root)->data;
 }
 
 Node *BinarySearchTree::find_min(Node *node) const
 {
-        // TODO: Students write code here
-
-	//TESTING
-	(void) node;
-	return NULL;
+        if(node->left == NULL) {
+        	return node;
+        }
+        //traverse left to find min
+        return find_min(node->left);
 }
 
 int BinarySearchTree::find_max() const
 {
-        // TODO: Students write code here
+        if(root == NULL) {
+        	return INT_MAX;
+        }
 
-	//TESTING
-	return 0;
+        return find_max(root)->data;
 }
 
 Node *BinarySearchTree::find_max(Node *node) const
 {
-        // TODO: Students write code here
-
-	//TESTING
-	(void) node;
-	return NULL;
+        if(node->right == NULL) {
+        	return node;
+        }
+        //traverse right to find max
+        return find_max(node->right);
 }
 
 bool BinarySearchTree::contains(int value) const
 {
-        // TODO: Students write code here
-
-	//TESTING
-	(void) value;
-	return true;
+        return contains(root, value);
 }
 
 bool BinarySearchTree::contains(Node *node, int value) const
 {
-        // TODO: Students write code here
-	(void) node;
-	(void) value;
-	return true;
+        if(node == NULL) {
+        	return false;
+        }
+        //traverse BST
+        if(node->data > value) {
+        	return contains(node->left, value);
+        } else if(node->data < value) {
+        	return contains(node->right, value);
+        } else {
+        	return true;
+        }
 }
 
 void BinarySearchTree::insert(int value)
@@ -191,7 +192,8 @@ void BinarySearchTree::insert(Node *node, Node *parent, int value)
 	}
 }
 
-Node *BinarySearchTree::create_node(int value) {
+Node *BinarySearchTree::create_node(int value)
+{
 	Node * new_node = new Node;
 	new_node->data = value;
 	new_node->count = 1;
@@ -208,11 +210,57 @@ bool BinarySearchTree::remove(int value)
 
 bool BinarySearchTree::remove(Node *node, Node *parent, int value)
 {
-        // TODO: Students write code here
-        // (cannot be a lazy removal)
-	(void) node;
-	(void) parent;
-	(void) value;
+        //value does not exist in BST
+	if(node == NULL) {
+		return false;
+	}
+	//traverse BST to find value
+	if(node->data > value) {
+		return remove(node->left, node, value);
+	} else if (node->data < value) {
+		return remove(node->right, node, value);
+	}
+	//found value
+	if(node->count > 1) {
+		--node->count;
+		return true;
+	}
+	if(node->left != NULL && node->right != NULL) {
+		return remove_two_child(node, parent, value);
+	} else {
+		return remove_one_no_child(node, parent, value);
+	}
+}
+
+bool BinarySearchTree::remove_two_child(Node * node, Node * parent, int value)
+{
+	//removed node has 2 children
+	Node * moved_node = find_min(node->right);
+	if(node->right == moved_node) {
+		node->right = NULL;
+	} else {
+		node->left = NULL;
+	}
+	//reset the parent pointer of moved_node then delete
+	node->data = moved_node->data;
+	delete moved_node;
+	return true;
+}
+
+bool BinarySearchTree::remove_one_no_child(Node *node,Node *parent,int value)
+{
+	//if node has one or no children
+	if(parent != NULL) {
+		Node ** par = NULL;
+		par = parent->data > value ? &parent->left : &parent->right;
+		if(node->left != NULL) {
+			*par = node->left;
+		} else {
+			*par = node->right;
+		}
+	}
+	cerr << node;
+	delete node;
 	return true;
 }
 
@@ -263,7 +311,6 @@ void BinarySearchTree::print_tree() const
 Node *BinarySearchTree::find_parent(Node *node, Node *child) const
 {
         if (node == NULL) return NULL;
-
         // if either the left or right is equal to the child,
         // we have found the parent
         if (node->left==child or node->right == child) {

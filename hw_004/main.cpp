@@ -21,7 +21,7 @@ void print_tree_details(BinarySearchTree &bst) {
         cout << "\n";
 }
 
-bool test_big_three() {
+void test_big_three() {
 	//copy constructor
 	BinarySearchTree tree1;
 	tree1.insert(1);
@@ -46,41 +46,91 @@ bool test_big_three() {
 	cout << "2nd tree3 w/ a 4.\n";
 	tree3.print_tree();
 	tree4.print_tree();
-
-	return true;
 }
 
-bool test_insert() {
-	BinarySearchTree tree;
-	tree.insert(5);
-	tree.print_tree();
-	tree.insert(5);
-	tree.print_tree();
-	tree.insert(2);
-	tree.print_tree();
-	tree.insert(8);
-	tree.print_tree();
-	tree.insert(1);
-	tree.print_tree();
-	tree.insert(9);
-	tree.print_tree();
-	tree.insert(3);
-	tree.print_tree();
-	tree.insert(7);
-	tree.print_tree();
+void test_insert(BinarySearchTree * tree) {
+//	BinarySearchTree tree;
+	tree->insert(5);
+//	tree.print_tree();
+	tree->insert(5);
+//	tree.print_tree();
+	tree->insert(2);
+//	tree.print_tree();
+	tree->insert(8);
+//	tree.print_tree();
+	tree->insert(2);
+//	tree.print_tree();
+	tree->insert(9);
+//	tree.print_tree();
+	tree->insert(3);
+//	tree.print_tree();
+	tree->insert(7);
+//	tree.print_tree();
+}
 
-	return true;
+void test_duplicate_count() {
+	BinarySearchTree tree;
+	tree.insert(4);
+	tree.insert(4);
+	tree.insert(4);
+	tree.insert(4);
+}
+
+void test_find_min() {
+	BinarySearchTree * tree = new BinarySearchTree;
+	test_insert(tree);
+	cout << tree->find_min() << "\n";
+}
+
+void test_find_max() {
+	BinarySearchTree * tree = new BinarySearchTree;
+	test_insert(tree);
+	cout << tree->find_max() << "\n";
+}
+
+void test_contains() {
+	BinarySearchTree * tree = new BinarySearchTree;
+	test_insert(tree);
+	cout << "Contains -2? (false): " << tree->contains(-2) << "\n";
+	cout << "Contains 7? (true): " << tree->contains(7) << "\n";
+}
+void test_remove() {
+	BinarySearchTree * tree = new BinarySearchTree;
+	//remove empty tree
+	cout << tree->remove(2);
+	test_insert(tree);
+//	tree->print_tree();
+//	//remove duplicate
+//	tree->remove(2);
+//	tree->print_tree();
+//	//remove 2 children
+//	tree->remove(8);
+//	tree->print_tree();
+//	//remove 1 child
+//	tree->remove(3);
+//	tree->print_tree();
+//	//remove no children
+//	tree->remove(2);
+//	tree->print_tree();
+	//remove no parent
+	tree->remove(5);
+	tree->print_tree();
+	tree->remove(5);
+	tree->print_tree();
+	//remove doesn't exist
+	//remove only right child
+
 }
 
 int main() {
 
-	if(test_big_three()) {
-		cout << "Big Three works!\n";
-	}
-
-//	if(test_insert()){
-//		cout << "Insert works!\n";
-//	}
+//	test_big_three();
+//	test_insert();
+//	test_duplicate_count();
+//	test_find_min();
+//	test_find_max();
+//	test_contains();
+	test_remove();
 
 //        int values[14] = {4,2,11,15,9,1,-6,5,3,15,2,5,13,14};
 //        BinarySearchTree bst;
