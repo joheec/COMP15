@@ -28,13 +28,41 @@ bool test_big_three() {
 	BinarySearchTree * tree3 = new BinarySearchTree();
 	tree3 = tree1 = tree2;
 
+	tree1->print_tree();
+
+	return true;
+}
+
+bool test_insert() {
+	BinarySearchTree tree;
+	tree.insert(5);
+	tree.print_tree();
+	tree.insert(5);
+	tree.print_tree();
+	tree.insert(2);
+	tree.print_tree();
+	tree.insert(8);
+	tree.print_tree();
+	tree.insert(1);
+	tree.print_tree();
+	tree.insert(9);
+	tree.print_tree();
+	tree.insert(3);
+	tree.print_tree();
+	tree.insert(7);
+	tree.print_tree();
+
 	return true;
 }
 
 int main() {
 
 	if(test_big_three()) {
-		cout << "It works!\n";
+		cout << "Big Three works!\n";
+	}
+
+	if(test_insert()){
+		cout << "Insert works!\n";
 	}
 
 //        int values[14] = {4,2,11,15,9,1,-6,5,3,15,2,5,13,14};

@@ -107,6 +107,8 @@ private:
         Node *find_max(Node *node) const;
         bool  contains(Node *node, int value) const;
         void  insert(Node *node,Node *parent, int value);
+        //A function to create nodes
+        Node *create_node(int value);
         bool  remove(Node *node, Node *parent, int value);
         int   tree_height(Node *node) const;
         int   node_count(Node *node) const;

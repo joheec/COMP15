@@ -162,16 +162,43 @@ bool BinarySearchTree::contains(Node *node, int value) const
 
 void BinarySearchTree::insert(int value)
 {
-	(void) value;
         insert(root, NULL, value);
 }
 
 void BinarySearchTree::insert(Node *node, Node *parent, int value)
 {
-	(void) node;
-	(void) parent;
-	(void) value;
-        // TODO: Students write code here
+	//insert into empty tree
+	if(root == NULL) {
+		root = create_node(value);
+		return;
+	}
+	//base case
+	if(node == NULL) {
+		if(parent->data > value) {
+			parent->left = create_node(value);
+		} else{
+			parent->right = create_node(value);
+		}
+		return;
+	}
+	//traverse tree
+	if(node->data > value) {
+		insert(node->left, node, value);
+	} else if(node->data < value) {
+		insert(node->right, node, value);
+	} else {
+		++(node->count);
+	}
+}
+
+Node *BinarySearchTree::create_node(int value) {
+	Node * new_node = new Node;
+	new_node->data = value;
+	new_node->count = 1;
+	new_node->left = NULL;
+	new_node->right = NULL;
+
+	return new_node;
 }
 
 bool BinarySearchTree::remove(int value)
