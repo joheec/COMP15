@@ -58,14 +58,14 @@ void test_insert(BinarySearchTree * tree) {
 //	tree.print_tree();
 	tree->insert(8);
 //	tree.print_tree();
-	tree->insert(2);
-//	tree.print_tree();
+//	tree->insert(2);
+////	tree.print_tree();
 	tree->insert(9);
-//	tree.print_tree();
+////	tree.print_tree();
 	tree->insert(3);
-//	tree.print_tree();
+////	tree.print_tree();
 	tree->insert(7);
-//	tree.print_tree();
+////	tree.print_tree();
 }
 
 void test_duplicate_count() {
@@ -99,26 +99,31 @@ void test_remove() {
 	//remove empty tree
 	cout << tree->remove(2);
 	test_insert(tree);
-//	tree->print_tree();
-//	//remove duplicate
-//	tree->remove(2);
-//	tree->print_tree();
-//	//remove 2 children
-//	tree->remove(8);
-//	tree->print_tree();
-//	//remove 1 child
-//	tree->remove(3);
-//	tree->print_tree();
-//	//remove no children
-//	tree->remove(2);
-//	tree->print_tree();
+	tree->print_tree();
+	//remove 2 children
+	tree->remove(8);
+	tree->print_tree();
+	//remove 1 child
+	tree->remove(2);
+	tree->print_tree();
+	//remove no children
+	tree->remove(3);
+	tree->print_tree();
 	//remove no parent
 	tree->remove(5);
 	tree->print_tree();
 	tree->remove(5);
 	tree->print_tree();
 	//remove doesn't exist
+	tree->remove(8);
+	tree->print_tree();
 	//remove only right child
+	tree->insert(10);
+	tree->insert(11);
+	tree->insert(12);
+	tree->print_tree();
+	tree->remove(10);
+	tree->print_tree();
 
 }
 

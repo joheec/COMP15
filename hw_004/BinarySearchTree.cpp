@@ -226,40 +226,49 @@ bool BinarySearchTree::remove(Node *node, Node *parent, int value)
 		return true;
 	}
 	if(node->left != NULL && node->right != NULL) {
-		return remove_two_child(node, parent, value);
+		return two_children(node, parent, value);
 	} else {
-		return remove_one_no_child(node, parent, value);
+		return one_no_child(node, parent, value);
 	}
 }
 
-bool BinarySearchTree::remove_two_child(Node * node, Node * parent, int value)
+bool BinarySearchTree::two_children(Node *node, Node *parent, int value)
 {
-	//removed node has 2 children
-	Node * moved_node = find_min(node->right);
-	if(node->right == moved_node) {
-		node->right = NULL;
+	//the min value is the node's right child
+	Node * temp = NULL;
+	if(node->right->left == NULL) {
+		node->data = node->right->data;
+		temp = node->right;
+		node->right = node->right->right;
 	} else {
-		node->left = NULL;
+		temp = find_min(node->right);
+		node->data = temp->data;
 	}
-	//reset the parent pointer of moved_node then delete
-	node->data = moved_node->data;
-	delete moved_node;
+	delete temp;
 	return true;
 }
 
-bool BinarySearchTree::remove_one_no_child(Node *node,Node *parent,int value)
+bool BinarySearchTree::one_no_child(Node *node, Node *parent, int value)
 {
-	//if node has one or no children
-	if(parent != NULL) {
-		Node ** par = NULL;
-		par = parent->data > value ? &parent->left : &parent->right;
-		if(node->left != NULL) {
-			*par = node->left;
+	//one child or no children
+	if(node->left == NULL) {
+		if(parent == NULL) {
+			root = node->right;
+		} else if(parent->data > value) {
+			parent->left = node->right;
 		} else {
-			*par = node->right;
+			parent->right = node->right;
+		}
+	} else {
+		if(parent == NULL) {
+			root = node->left;
+		}
+		else if(parent->data > value) {
+			parent->left = node->left;
+		} else {
+			parent->right = node->left;
 		}
 	}
-	cerr << node;
 	delete node;
 	return true;
 }
