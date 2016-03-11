@@ -37,12 +37,10 @@ BinarySearchTree::~BinarySearchTree()
  */
 void BinarySearchTree::post_order_delete(Node *node)
 {
-        // base case for recursion: delete node with no children.
-	if(node->left == NULL && node->right == NULL) {
-		delete node;
+	// base case for recursion: delete node with no children.
+	if(node == NULL) {
 		return;
 	}
-
 	//delete the left and then right children
 	if(node->left != NULL) {
 		post_order_delete(node->left);
@@ -50,6 +48,8 @@ void BinarySearchTree::post_order_delete(Node *node)
 	if(node->right != NULL) {
 		post_order_delete(node->right);
 	}
+
+	delete node;
 }
 
 /*
@@ -72,7 +72,7 @@ BinarySearchTree &BinarySearchTree::operator= (const BinarySearchTree &source)
 	}
 
         // delete current tree if it exists
-	delete this;
+	post_order_delete(this->root);
 
         // use pre-order traversal to copy the tree
 	this->root = pre_order_copy(source.root);

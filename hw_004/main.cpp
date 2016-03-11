@@ -22,13 +22,30 @@ void print_tree_details(BinarySearchTree &bst) {
 }
 
 bool test_big_three() {
+	//copy constructor
+	BinarySearchTree tree1;
+	tree1.insert(1);
+	BinarySearchTree tree2 = tree1;
+	tree2.insert(2);
 
-	BinarySearchTree * tree1 = new BinarySearchTree();
-	BinarySearchTree * tree2 = tree1;
-	BinarySearchTree * tree3 = new BinarySearchTree();
-	tree3 = tree1 = tree2;
+	//assignment operator
+	BinarySearchTree tree3;
+	tree3 = tree2;
+	tree3.insert(3);
 
-	tree1->print_tree();
+	tree1.print_tree();
+	tree2.print_tree();
+	tree3.print_tree();
+
+	//assignment operator with existing data
+	BinarySearchTree tree4;
+	tree4.insert(3);
+	tree3.insert(4);
+	tree4 = tree3;
+
+	cout << "2nd tree3 w/ a 4.\n";
+	tree3.print_tree();
+	tree4.print_tree();
 
 	return true;
 }
@@ -61,9 +78,9 @@ int main() {
 		cout << "Big Three works!\n";
 	}
 
-	if(test_insert()){
-		cout << "Insert works!\n";
-	}
+//	if(test_insert()){
+//		cout << "Insert works!\n";
+//	}
 
 //        int values[14] = {4,2,11,15,9,1,-6,5,3,15,2,5,13,14};
 //        BinarySearchTree bst;
