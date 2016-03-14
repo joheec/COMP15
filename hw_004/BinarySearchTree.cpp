@@ -29,7 +29,7 @@ BinarySearchTree::~BinarySearchTree()
 }
 
 /*
- * @parameter	Node*	node	The pointer to the node and its children that
+ * @parameter	Node* node	The pointer to the node and its children that
  * 				are to be deleted.
  * @return	void
  *
@@ -238,11 +238,17 @@ bool BinarySearchTree::two_children(Node *node, Node *parent, int value)
 	Node * temp = NULL;
 	if(node->right->left == NULL) {
 		node->data = node->right->data;
+		node->count = node->right->count;
 		temp = node->right;
 		node->right = node->right->right;
 	} else {
+		Node * temp_parent = NULL;
 		temp = find_min(node->right);
+		temp_parent = find_parent(root, temp);
+
 		node->data = temp->data;
+		node->count = temp->count;
+		temp_parent->left = temp->right;
 	}
 	delete temp;
 	return true;
@@ -280,9 +286,11 @@ int BinarySearchTree::tree_height() const
 
 int BinarySearchTree::tree_height(Node *node) const
 {
-        // TODO: Students write code here
-	(void) node;
-	return 0;
+        if(node == NULL) {
+        	return -1;
+        }
+
+        return 1 + max(tree_height(node->left), tree_height(node->right));
 }
 
 // returns the total number of nodes
@@ -293,9 +301,11 @@ int BinarySearchTree::node_count() const
 
 int BinarySearchTree::node_count(Node *node) const
 {
-        // TODO: Students write code here
-	(void) node;
-	return 0;
+        if(node == NULL) {
+        	return 0;
+        }
+
+        return 1 + node_count(node->left) + node_count(node->right);
 }
 
 // return the sum of all the node values (including duplicates)
@@ -306,9 +316,12 @@ int BinarySearchTree::count_total() const
 
 int BinarySearchTree::count_total(Node *node) const
 {
-        // TODO: Students write code here:
-	(void) node;
-	return 0;
+        if(node == NULL) {
+        	return 0;
+        }
+        return (node->data * node->count) +
+        		count_total(node->left) + count_total(node->right);
+
 }
 
 // use the printPretty helper to make the tree look nice

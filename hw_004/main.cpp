@@ -50,22 +50,27 @@ void test_big_three() {
 
 void test_insert(BinarySearchTree * tree) {
 //	BinarySearchTree tree;
-	tree->insert(5);
+//	tree->insert(5);
 //	tree.print_tree();
 	tree->insert(5);
 //	tree.print_tree();
 	tree->insert(2);
 //	tree.print_tree();
-	tree->insert(8);
+	tree->insert(10);
 //	tree.print_tree();
 //	tree->insert(2);
 ////	tree.print_tree();
-	tree->insert(9);
+	tree->insert(15);
 ////	tree.print_tree();
 	tree->insert(3);
 ////	tree.print_tree();
 	tree->insert(7);
 ////	tree.print_tree();
+	tree->insert(11);
+	tree->insert(11);
+//	tree->insert(15);
+	tree->insert(14);
+	tree->insert(18);
 }
 
 void test_duplicate_count() {
@@ -100,6 +105,10 @@ void test_remove() {
 	cout << tree->remove(2);
 	test_insert(tree);
 	tree->print_tree();
+	tree->remove(10);
+	tree->print_tree();
+
+
 	//remove 2 children
 	tree->remove(8);
 	tree->print_tree();
@@ -127,6 +136,44 @@ void test_remove() {
 
 }
 
+void test_tree_height()
+{
+	//no node
+	BinarySearchTree * tree = new BinarySearchTree;
+	cout << tree->tree_height();
+	//1 node
+//	tree->insert(20);
+//	tree->print_tree();
+//	cout << tree->tree_height();
+	//multiple nodes
+	test_insert(tree);
+	tree->print_tree();
+	cout << tree->tree_height();
+}
+
+void test_node_count()
+{
+	//no node
+	BinarySearchTree * tree = new BinarySearchTree;
+	cout << tree->node_count();
+//	//1 node
+//	tree->insert(20);
+	tree->print_tree();
+	cout << tree->node_count();
+	//multiple nodes
+	test_insert(tree);
+	tree->print_tree();
+	cout << tree->node_count();
+}
+
+void test_count_total()
+{
+	BinarySearchTree * tree = new BinarySearchTree;
+	test_insert(tree);
+	tree->print_tree();
+	cout << tree->count_total();
+}
+
 int main() {
 
 //	test_big_three();
@@ -135,57 +182,60 @@ int main() {
 //	test_find_min();
 //	test_find_max();
 //	test_contains();
-	test_remove();
+//	test_remove();
+//	test_tree_height();
+//	test_node_count();
+//	test_count_total();
 
-//        int values[14] = {4,2,11,15,9,1,-6,5,3,15,2,5,13,14};
-//        BinarySearchTree bst;
-//        for (int i=0;i<14;i++) {
-//                bst.insert(values[i]);
-//        }
-//        cout << "Original tree " <<
-//                        "(asterisks denote a count of more than 1):\n";
-//        print_tree_details(bst);
-//
-//        // make a copy with copy constructor
-//        BinarySearchTree bst_copy_constructor = bst;
-//        //bst_copy_constructor.print_tree();
-//
-//        // make a copy with assignment overload
-//        BinarySearchTree bst_copy_1;
-//        bst_copy_1 = bst;
-//
-//        cout << "Removing 9 from original tree:\n";
-//        bst.remove(9); // remove a node with no children
-//        print_tree_details(bst);
-//
-//        bst = bst_copy_1;
-//
-//        cout << "Removing 1 from original tree:\n";
-//        bst.remove(1); // remove a node with one child
-//        print_tree_details(bst);
-//
-//        bst = bst_copy_1;
-//
-//        cout << "Removing 11 from original tree:\n";
-//        bst.remove(11); // remove a node with one child
-//        print_tree_details(bst);
-//
-//        bst = bst_copy_1;
-//
-//        cout << "Removing 5 from original tree " <<
-//                        "(should still have one 5):\n";
-//        bst.remove(5); // remove a node with one child
-//        print_tree_details(bst);
-//
-//        // check if the tree contains values
-//        bst = bst_copy_1;
-//        for (int i=-10;i<20;i++) {
-//                cout << "Tree " << (bst.contains(i) ?
-//                                "contains " :
-//                                "does not contain ")
-//                                << "the value " << i << "\n";
-//        }
-//
-//        cout << "\nFinished!\n";
+        int values[14] = {4,2,11,15,9,1,-6,5,3,15,2,5,13,14};
+        BinarySearchTree bst;
+        for (int i=0;i<14;i++) {
+                bst.insert(values[i]);
+        }
+        cout << "Original tree " <<
+                        "(asterisks denote a count of more than 1):\n";
+        print_tree_details(bst);
+
+        // make a copy with copy constructor
+        BinarySearchTree bst_copy_constructor = bst;
+        //bst_copy_constructor.print_tree();
+
+        // make a copy with assignment overload
+        BinarySearchTree bst_copy_1;
+        bst_copy_1 = bst;
+
+        cout << "Removing 9 from original tree:\n";
+        bst.remove(9); // remove a node with no children
+        print_tree_details(bst);
+
+        bst = bst_copy_1;
+
+        cout << "Removing 1 from original tree:\n";
+        bst.remove(1); // remove a node with one child
+        print_tree_details(bst);
+
+        bst = bst_copy_1;
+
+        cout << "Removing 11 from original tree:\n";
+        bst.remove(11); // remove a node with one child
+        print_tree_details(bst);
+
+        bst = bst_copy_1;
+
+        cout << "Removing 5 from original tree " <<
+                        "(should still have one 5):\n";
+        bst.remove(5); // remove a node with one child
+        print_tree_details(bst);
+
+        // check if the tree contains values
+        bst = bst_copy_1;
+        for (int i=-10;i<20;i++) {
+                cout << "Tree " << (bst.contains(i) ?
+                                "contains " :
+                                "does not contain ")
+                                << "the value " << i << "\n";
+        }
+
+        cout << "\nFinished!\n";
         return 0;
 }
