@@ -110,7 +110,7 @@ private:
         //A function to create nodes
         Node *create_node(int value);
         bool  remove(Node *node, Node *parent, int value);
-        bool  two_children(Node *node, Node *parent, int value);
+        bool  two_children(Node *node);
         bool  one_no_child(Node *node, Node *parent, int value);
         int   tree_height(Node *node) const;
         int   node_count(Node *node) const;

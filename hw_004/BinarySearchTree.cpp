@@ -226,13 +226,13 @@ bool BinarySearchTree::remove(Node *node, Node *parent, int value)
 		return true;
 	}
 	if(node->left != NULL && node->right != NULL) {
-		return two_children(node, parent, value);
+		return two_children(node);
 	} else {
 		return one_no_child(node, parent, value);
 	}
 }
 
-bool BinarySearchTree::two_children(Node *node, Node *parent, int value)
+bool BinarySearchTree::two_children(Node *node)
 {
 	//the min value is the node's right child
 	Node * temp = NULL;
