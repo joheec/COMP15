@@ -8,7 +8,7 @@
 #include <iostream>
 #include <cstdlib>
 
-#include "IntVector.h"
+#include "sortnums.h"
 #include "test.h"
 
 using namespace std;
@@ -98,4 +98,28 @@ void test_add()
 	cerr << "Add test (3): " << test.get(2) << "\n";
 	cerr << "Add test size (3): " << test.size() << "\n";
 	cerr << "Add test capacity (4): " << test.capacity() << "\n";
+}
+
+void test_printNumbers()
+{
+	IntVector test(2);
+	cout << "PrintNumbers test (nothing): \n";
+	printNumbers(test);
+	test.add(4);
+	cout << "PrintNumbers test (4): \n";
+	printNumbers(test);
+	test.add(5);
+	test.add(111);
+	cout << "PrintNumbers test (4, 5, 11): \n";
+	printNumbers(test);
+}
+
+void test_swap()
+{
+	IntVector test;
+	test.add(5);
+	test.add(96);
+	swap(test, 0, 1);
+	cout << "Swap test (96, 5): \n";
+	printNumbers(test);
 }

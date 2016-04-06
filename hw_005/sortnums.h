@@ -41,17 +41,17 @@
  *         implementations have been omitted.
  */
 
+#include "IntVector.h"
+
 using namespace std;
 
 string algorithmFromCommandLine(int argc, char *argv[]);
 void   usageAbort (string progname, string message);
-//void   readNumbers(istream &input, IntVector &data);
-//void   sortNumbers(string algorithm, IntVector &data);
-//void   printNumbers(const IntVector &data);
-//
-//void swap(IntVector &vector, int i, int j);
-//
-//void bubbleSort(IntVector &data);
+void   readNumbers(istream &input, IntVector &data);
+void   printNumbers(const IntVector &data);
+void swap(IntVector &vector, int i, int j);
+void   sortNumbers(string algorithm, IntVector &data);
+void bubbleSort(IntVector &data);
 
 
 

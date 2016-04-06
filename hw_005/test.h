@@ -16,5 +16,8 @@ void test_set();
 void test_operator();
 void test_add();
 
+void test_printNumbers();
+void test_swap();
+
 
 #endif /* TEST_H_ */

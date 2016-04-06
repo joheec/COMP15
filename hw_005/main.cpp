@@ -41,7 +41,6 @@
 #include <cstdlib>
 
 #include "test.h"
-#include "IntVector.h"
 #include "sortnums.h"
 
 using namespace std;
@@ -50,24 +49,23 @@ int main(int argc, char *argv[])
 {
 	string algorithm = algorithmFromCommandLine(argc, argv);
 
-	test_construction();
-	test_copiers();
-	test_destroy();
-	test_get();
-	test_set();
-	test_operator();
-	test_add();
+	IntVector data;
+	readNumbers(cin, data);
+	sortNumbers(algorithm, data);
+//
+//	test_construction();
+//	test_copiers();
+//	test_destroy();
+//	test_get();
+//	test_set();
+//	test_operator();
+//	test_add();
 
-//	IntVector read;
-//	int input;
-//	cin >> input;
-//	int attempt = 0;
-//	 while(!cin.eof()) {
-//		 read.add(input);
-//		 cout << "Input: " << read.get(attempt) << "\n";
-//		 ++attempt;
-//		 cin >> input;
-//	 }
+//	test_swap();
+//	test_printNumbers();
+//
+
+
 
 	return 0;
 }

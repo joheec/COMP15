@@ -34,24 +34,8 @@
 #include <cstdlib>
 
 #include "sortnums.h"
-#include "IntVector.h"
 
 using namespace std;
-
-/*
- * Abort the program with a message on standard error
- * explaining how to run the program correctly from the 
- * command line.
- */
-void usageAbort(string progname, string message)
-{
-        cerr << message << endl
-             << "Usage:  " << progname << " algorithm" << endl
-             << "     where algorithm is one of "
-             << "bubble, sort2, or sort3"
-             << endl;
-        exit(1);
-}
 
 
 /*
@@ -78,6 +62,21 @@ string algorithmFromCommandLine(int argc, char *argv[])
 }
 
 /*
+ * Abort the program with a message on standard error
+ * explaining how to run the program correctly from the
+ * command line.
+ */
+void usageAbort(string progname, string message)
+{
+        cerr << message << endl
+             << "Usage:  " << progname << " algorithm" << endl
+             << "     where algorithm is one of "
+             << "bubble, sort2, or sort3"
+             << endl;
+        exit(1);
+}
+
+/*
  * void readNumbers(istream &input, IntVector &data);
  *
  * Read in a collection of integers from the given input stream
@@ -89,25 +88,31 @@ string algorithmFromCommandLine(int argc, char *argv[])
  * likewise. 
  *
  */
+void readNumbers(istream &input, IntVector &data)
+{
+	int number;
+	input >> number;
+	int index = 0;
+	while(!input.fail()) {
+		data.add(number);
+//		cerr << "ReadNumbers: " << data.get(index) << "\n";
+		input >> number;
+		index++;
+	}
+}
 
-/*
- * void sortNumbers(string algorithm, IntVector &data);
- *
- * Updates contents of data so items are sorted using the chosen
- * algorithm.
- */
 
 /*
  * void   printNumbers(const IntVector &data);
  *
  * Print contents of data one item per line.
  */
-
-/*
- * void bubbleSort(IntVector &data);
- *
- * In-place sort of contents of data using the bubble sort algorithm.
- */
+void printNumbers(const IntVector &data)
+{
+	for(int i = 0; i < data.size(); ++i){
+		cout << data[i] << "\n";
+	}
+}
 
 /*
  * void swap(IntVector &vector, int i, int j);
@@ -115,3 +120,42 @@ string algorithmFromCommandLine(int argc, char *argv[])
  * Updates the given vector so that the items at position i and j
  * are swapped.
  */
+void swap(IntVector &vector, int i, int j)
+{
+	int temp = vector[i];
+	vector[i] = vector[j];
+	vector[j] = temp;
+}
+
+/*
+ * void sortNumbers(string algorithm, IntVector &data);
+ *
+ * Updates contents of data so items are sorted using the chosen
+ * algorithm.
+ */
+void sortNumbers(string algorithm, IntVector &data)
+{
+	if(algorithm == "bubble") {
+		bubbleSort(data);
+	} else if (algorithm == "sort2") {
+
+	} else if (algorithm == "sort3") {
+
+	} else {
+		throw invalid_argument( "Not a valid algorithm." );
+	}
+}
+
+
+/*
+ * void bubbleSort(IntVector &data);
+ *
+ * In-place sort of contents of data using the bubble sort algorithm.
+ */
+void bubbleSort(IntVector &data)
+{
+	printNumbers(data);
+	cout << "BubbleSort function\n";
+}
+
+
