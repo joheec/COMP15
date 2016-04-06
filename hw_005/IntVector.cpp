@@ -7,6 +7,7 @@
 
 #include <iostream>
 #include <cstdlib>
+#include <assert.h>
 
 #include "IntVector.h"
 
@@ -17,7 +18,7 @@ IntVector::IntVector()
 {
 	sortingBins = new int[INITIAL_CAPACITY];
 	binSize = 0;
-	binCapacity = 10;
+	binCapacity = INITIAL_CAPACITY;
 }
 
 /*
@@ -28,8 +29,6 @@ IntVector::IntVector(int initialSize)
 	sortingBins = new int[initialSize];
 	binSize = 0;
 	binCapacity = initialSize;
-
-	cerr << binCapacity << "\n";
 }
 
 /*
@@ -54,16 +53,12 @@ IntVector::IntVector(const IntVector &source)
 	for(int i = 0; i < binSize; ++i) {
 		sortingBins[i] = source.sortingBins[i];
 	}
-
-	cerr << "Copy Constructor: " << binCapacity << "\n";
 }
 IntVector &IntVector::operator=(const IntVector &rhs)
 {
 	if(this == &rhs) {
 		return * this;
-		cerr << "SAME\n";
 	}
-	cerr << "Blah\n";
 
 	delete[] sortingBins;
 	sortingBins = new int[rhs.binCapacity];
@@ -74,15 +69,13 @@ IntVector &IntVector::operator=(const IntVector &rhs)
 		sortingBins[i] = rhs.sortingBins[i];
 	}
 
-	cerr << "Assignment: " << binCapacity << "\n";
-
 	return *this;
 
 }
 
 IntVector::~IntVector()
 {
-
+	delete [] sortingBins;
 }
 
 /*
@@ -93,7 +86,10 @@ IntVector::~IntVector()
  */
 void IntVector::destroy()
 {
-
+	delete[] sortingBins;
+	sortingBins = new int[0];
+	binCapacity = 0;
+	binSize = 0;
 }
 
 /*
@@ -104,20 +100,19 @@ void IntVector::destroy()
  */
 int IntVector::get(int index) const
 {
-	(void) index;
-	return 0;
+	assert(index >= 0 && index < binSize);
+	return sortingBins[index];
 }
 
 /*
  * Set array element at given index to newVal.
- *
  * Throw exception or abort with error message if index
  * out of range.
  */
 void IntVector::set(int index, int newVal)
 {
-	(void) index;
-	(void) newVal;
+	assert(index >= 0 && index < binSize);
+	sortingBins[index] = newVal;
 }
 
 /*
@@ -128,26 +123,40 @@ void IntVector::set(int index, int newVal)
  * Throw exception or abort with error message if index
  * out of range.
  */
-//int &IntVector::operator[](int index) const
-//{
-//	(void) index;
-//	return 0;
-//}
+int &IntVector::operator[](int index) const
+{
+	assert(index >= 0 && index < binSize);
+	return sortingBins[index];
+}
 
 /* Add newVal to end of vector, increasing current size by one. */
 void  IntVector::add(int newVal)
 {
-	(void) newVal;
+	if(binSize < binCapacity) {
+		sortingBins[binSize] = newVal;
+		++binSize;
+		return;
+	}
+	binCapacity = 2 * binCapacity;
+	int * temp = new int[binCapacity];
+
+	for(int i = 0; i < binSize; ++i) {
+		temp[i] = sortingBins[i];
+	}
+	delete[] sortingBins;
+	sortingBins = temp;
+
+	add(newVal);
 }
 
 /* Return current size of vector. */
 int IntVector::size() const
 {
-	return 0;
+	return binSize;
 }
 
 /* Return current capacity of vector */
 int IntVector::capacity() const
 {
-	return 0;
+	return binCapacity;
 }

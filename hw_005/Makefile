@@ -26,16 +26,19 @@ CXX      = clang++
 CXXFLAGS = -Wall -Wextra -Wconversion -std=c++11 -g
 LDFLAGS  = -g
 
-sortnums:  sortnums.o IntVector.o
+sortnums:  sortnums.o IntVector.o test.o main.o
 	${CXX} ${LDFLAGS} -o sortnums $^
 
-sortnums.o:  sortnums.cpp  IntVector.h
-IntVector.o: IntVector.cpp IntVector.h
+main.o:      main.cpp  IntVector.h sortnums.h  test.h
+sortnums.o:  sortnums.cpp   sortnums.h   IntVector.h
+IntVector.o: IntVector.cpp  IntVector.h
+test.o:      test.cpp  test.h      IntVector.h
 
 
 clean:
 	rm -rf sortnums *.o *.dSYM
 
 make provide:
-	provide comp15 hw5 sortnums.cpp IntVector.cpp IntVector.h \
+	provide comp15 hw5 main.cpp IntVector.cpp IntVector.h \
+	sortnums.cpp sortnums.h test.cpp test.h \
 	        ReadMe.md Makefile

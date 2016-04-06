@@ -67,7 +67,7 @@ public:
          * Throw exception or abort with error message if index 
          * out of range.
          */
-//        int  &operator[](int index) const;
+        int  &operator[](int index) const;
 
         /* Add newVal to end of vector, increasing current size by one. */
         void  add(int newVal);

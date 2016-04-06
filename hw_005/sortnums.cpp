@@ -33,54 +33,10 @@
 #include <iostream>
 #include <cstdlib>
 
-#include "test.cpp"
+#include "sortnums.h"
+#include "IntVector.h"
 
 using namespace std;
-
-//string algorithmFromCommandLine(int argc, char *argv[]);
-void   usageAbort (string progname, string message);
-//void   readNumbers(istream &input, IntVector &data);
-//void   sortNumbers(string algorithm, IntVector &data);
-//void   printNumbers(const IntVector &data);
-//
-//void swap(IntVector &vector, int i, int j);
-//
-//void bubbleSort(IntVector &data);
-
-
-int main(int argc, char *argv[])
-{
-	if(argc <= 1) {
-		usageAbort("sortnums", "Pick an algorithm.");
-	}
-	for(int i = 1; i < argc; ++i) {
-		string argString = argv[i];
-		if(argString != "bubble" && argString != "sort2" && argString != "sort3") {
-			usageAbort("sortnums","Incorrect algorithm.");
-		} else {
-			cerr << "You picked an algorithm!: " << argString << "\n";
-		}
-	}
-
-	test_construction();
-	test_copiers();
-
-	return 0;
-}
-
-
-//int main(int argc, char *argv[])
-//{
-//        IntVector data;
-//        string    sortAlgorithm;
-//
-//        sortAlgorithm = algorithmFromCommandLine(argc, argv);
-//        readNumbers(cin, data);
-//        sortNumbers(sortAlgorithm, data);
-//        printNumbers(data);
-//
-//        return 0;
-//}
 
 /*
  * Abort the program with a message on standard error
@@ -97,9 +53,6 @@ void usageAbort(string progname, string message)
         exit(1);
 }
 
-/***************************************************************************/
-/**                      Functions you may want to write                  **/
-/***************************************************************************/
 
 /*
  * string algorithmFromCommandLine(int argc, char *argv[]);
@@ -110,6 +63,19 @@ void usageAbort(string progname, string message)
  * algorithm is not supported.
  *
  */
+string algorithmFromCommandLine(int argc, char *argv[])
+{
+	string argString;
+
+	if(argc <= 1) {
+		usageAbort("sortnums", "Pick an algorithm.");
+	}
+	argString = argv[1];
+	if(argString != "bubble" && argString != "sort2" && argString != "sort3") {
+		usageAbort("sortnums","Incorrect algorithm.");
+	}
+	return argString;
+}
 
 /*
  * void readNumbers(istream &input, IntVector &data);
