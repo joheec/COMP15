@@ -21,5 +21,6 @@ void test_swap();
 
 void test_bubble();
 void test_mergeSort();
+void test_insertionSort();
 
 #endif /* TEST_H_ */

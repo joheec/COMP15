@@ -54,6 +54,7 @@ void   sortNumbers(string algorithm, IntVector &data);
 void bubbleSort(IntVector &data);
 IntVector mergeSort(IntVector &data);
 IntVector merge(IntVector data1, IntVector data2);
+void insertionSort(IntVector &data);
 
 
 

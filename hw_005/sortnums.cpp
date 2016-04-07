@@ -244,3 +244,39 @@ IntVector merge(IntVector data1, IntVector data2)
 
 	return temp;
 }
+
+/*
+ * Insertion
+ */
+void insertionSort(IntVector &data)
+{
+	IntVector temp;
+	int index = 0;
+
+	while(temp.size() != data.size()) {
+//		if(index == 0) {
+//			temp.add(data[0]);
+//			++index;
+//			continue;
+//		}
+
+		int insertIndex = index;
+		while(insertIndex > 0 && temp[insertIndex-1] > data[index]) {
+			--insertIndex;
+		}
+		//to increase the size of the IntVector
+		temp.add(0);
+
+		//if index is less than the size, will have to shift elements
+		if(temp.size() >= insertIndex ) {
+			for(int i = temp.size() - 1; i > insertIndex; --i) {
+				temp[i] = temp[i-1];
+			}
+		}
+
+		temp[insertIndex] = data[index];
+
+		++index;
+	}
+	data = temp;
+}
