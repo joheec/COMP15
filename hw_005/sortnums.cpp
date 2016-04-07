@@ -55,9 +55,9 @@ string algorithmFromCommandLine(int argc, char *argv[])
 		usageAbort("sortnums", "Pick an algorithm.");
 	}
 	argString = argv[1];
-	if(argString != "bubble" && argString != "sort2" && argString != "sort3") {
-		usageAbort("sortnums","Incorrect algorithm.");
-	}
+//	if(argString != "bubble" && argString != "sort2" && argString != "sort3") {
+//		usageAbort("sortnums","Incorrect algorithm.");
+//	}
 	return argString;
 }
 
@@ -138,7 +138,7 @@ void sortNumbers(string algorithm, IntVector &data)
 	if(algorithm == "bubble") {
 		bubbleSort(data);
 	} else if (algorithm == "sort2") {
-
+		mergeSort(data);
 	} else if (algorithm == "sort3") {
 
 	} else {
@@ -154,8 +154,93 @@ void sortNumbers(string algorithm, IntVector &data)
  */
 void bubbleSort(IntVector &data)
 {
-	printNumbers(data);
-	cout << "BubbleSort function\n";
+	int index = 1;
+	while(index < data.size()) {
+		if(data[index] < data[index-1]) {
+			int backIndex = index;
+			while(backIndex > 0) {
+				int temp = data[backIndex-1];
+				data[backIndex-1] = data[backIndex];
+				data[backIndex] = temp;
+				--backIndex;
+			}
+		}
+		++index;
+	}
 }
 
+/*
+ * mergesort
+ */
+IntVector mergeSort(IntVector &data)
+{
+	if(data.size() <= 1) {
+		return data;
+	}
 
+	int size0 = data.size();
+	int size1 = size0/2;
+
+	IntVector temp1;
+	IntVector temp2;
+
+	for(int i = 0; i < size1; ++i) {
+		temp1.add(data[i]);
+		temp2.add(data[size1 + i]);
+	}
+
+	if(size0 % 2 == 1) {
+		temp2.add(data[size0 - 1]);
+	}
+
+	temp1 = mergeSort(temp1);
+	temp2 = mergeSort(temp2);
+
+	IntVector mergedVector = merge(temp1, temp2);
+
+	if(data.size() == mergedVector.size()) {
+		data = mergedVector;
+		return data;
+	} else {
+		return mergedVector;
+	}
+}
+
+/*
+ * merge
+ */
+IntVector merge(IntVector data1, IntVector data2)
+{	IntVector temp;
+
+	int size1 = data1.size();
+	int size2 = data2.size();
+
+	int index1 = 0;
+	int index2 = 0;
+
+	while(size1 != 0 && size2 != 0) {
+		if(data1[index1] < data2[index2]) {
+			temp.add(data1[index1]);
+			++index1;
+			--size1;
+		} else {
+			temp.add(data2[index2]);
+			++index2;
+			--size2;
+		}
+	}
+
+	while(size1 != 0) {
+		temp.add(data1[index1]);
+		++index1;
+		--size1;
+	}
+
+	while(size2 != 0) {
+		temp.add(data2[index2]);
+		++index2;
+		--size2;
+	}
+
+	return temp;
+}

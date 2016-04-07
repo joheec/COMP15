@@ -47,12 +47,15 @@ using namespace std;
 
 int main(int argc, char *argv[])
 {
-	string algorithm = algorithmFromCommandLine(argc, argv);
-
-	IntVector data;
-	readNumbers(cin, data);
-	sortNumbers(algorithm, data);
+	(void) argc;
+	(void) argv;
+//	string algorithm = algorithmFromCommandLine(argc, argv);
 //
+//	IntVector data;
+//	readNumbers(cin, data);
+//
+//	sortNumbers(algorithm, data);
+////
 //	test_construction();
 //	test_copiers();
 //	test_destroy();
@@ -64,9 +67,9 @@ int main(int argc, char *argv[])
 //	test_swap();
 //	test_printNumbers();
 //
+//	test_bubble();
 
-
-
+	test_mergeSort();
 	return 0;
 }
 

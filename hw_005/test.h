@@ -19,5 +19,7 @@ void test_add();
 void test_printNumbers();
 void test_swap();
 
+void test_bubble();
+void test_mergeSort();
 
 #endif /* TEST_H_ */

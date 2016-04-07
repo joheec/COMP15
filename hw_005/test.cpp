@@ -123,3 +123,67 @@ void test_swap()
 	cout << "Swap test (96, 5): \n";
 	printNumbers(test);
 }
+
+void test_bubble()
+{
+	IntVector test;
+	test.add(5);
+	test.add(891);
+	test.add(2);
+	test.add(1);
+	test.add(-4);
+
+	cout << "Before bubble sort: \n";
+	printNumbers(test);
+	bubbleSort(test);
+	cout << "After bubble sort: \n";
+	printNumbers(test);
+}
+
+void test_mergeSort()
+{
+	IntVector test1(0);
+	IntVector test2(1);
+	test2.add(0);
+	IntVector test3(5);
+	test3.add(900);
+	test3.add(34);
+	test3.add(3);
+	test3.add(478);
+	test3.add(1);
+	IntVector test4(6);
+	test4.add(60);
+	test4.add(19);
+	test4.add(3);
+	test4.add(7);
+	test4.add(387);
+	test4.add(58);
+
+	cerr << "test1a\n";
+	printNumbers(test1);
+	cerr << "\n";
+	mergeSort(test1);
+	cerr << "\ntest1b\n";
+	printNumbers(test1);
+
+	cerr << "\ntest2a\n";
+	printNumbers(test2);
+	cerr << "\n";
+	mergeSort(test2);
+	cerr << "\ntest2b\n";
+	printNumbers(test2);
+
+	cerr << "\ntest3a\n";
+	printNumbers(test3);
+	cerr << "\n";
+	mergeSort(test3);
+	cerr << "\ntest3b\n";
+	printNumbers(test3);
+
+	cerr << "\ntest4a\n";
+	printNumbers(test4);
+	cerr << "\n";
+	mergeSort(test4);
+	cerr << "\ntest4b\n";
+	printNumbers(test4);
+}
