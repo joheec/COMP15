@@ -114,24 +114,27 @@ void test_printNumbers()
 	printNumbers(test);
 }
 
-void test_swap()
-{
-	IntVector test;
-	test.add(5);
-	test.add(96);
-	swap(test, 0, 1);
-	cout << "Swap test (96, 5): \n";
-	printNumbers(test);
-}
+//void test_swap()
+//{
+//	IntVector test;
+//	test.add(5);
+//	test.add(96);
+//	swap(test, 0, 1);
+//	cout << "Swap test (96, 5): \n";
+//	printNumbers(test);
+//}
 
 void test_bubble()
 {
 	IntVector test;
+	test.add(4);
 	test.add(5);
-	test.add(891);
+	test.add(12);
+	test.add(12);
+	test.add(84);
 	test.add(2);
-	test.add(1);
-	test.add(-4);
+	test.add(900);
+	test.add(63);
 
 	cout << "Before bubble sort: \n";
 	printNumbers(test);

@@ -1,37 +1,62 @@
 ## ReadMe for COMP 15 HW5
 ## Sorting Assignment
 
-Every assignment you submit you will include a ReadMe.md file.
+PURPOSE:
+	Takes an input of integers and sorts them using an algorithm also
+	specified in the input.
 
-The purpose of the ReadMe file is the same as the little paper insert
-you get in a new appliance -- to give the reader an introduction and
-overview of the product.
+FILES:
+	- main.cpp: Runs the program
+	- test.h/test.cpp: Test functions
+	- IntVector.h/IntVector.cpp: Creates, manipulates, and gets 
+	information from a dynamic array.
+	- sortnums.h/sortnums.cpp: Gets which algorithm to run and
+	data from input. Prints and sorts data.
 
-Your ReadMe file for the assignments **must** include:
+HOW TO COMPILE:
+	- Use included Makefile.
+	
+DATA STRUCTURE:
+	- Uses dynamic arrays to hold data.
 
-1.  The purpose of your program
+ALGORITHM:
+	- Bubble Sort
+		- Goes through the vector and checks that each element is 
+		less than the previous element. If the previous element is
+		greater than the current element, move the element to a lower
+		index until the previous element is less than the current
+		element.
+		- Best Case Complexity is O(n). The first while loop will
+		iterate through all the elements regardless, but the while 
+		loop inside of it will not iterate if all the elements are 
+		already sorted.
+		- Worst Case Complexity is O(n^2). The first while loop will
+		iterate through all the elements regardless, but the while
+		loop inside of it will iterate through all of the elements
+		before it if all the elements are in reverse order.
+	- Merge Sort
+		- Recursively divides the vector until there it has a size of
+		one. Merge the divided vectors one at a time, putting the 
+		elements in ascending order .
+		- Best and Worst Case Complexity is O(nlogn). The input is 
+		recurively halved and then the elements are iterated through
+		as they are merged together, causing log n iterations of n.
+	- Insertion Sort
+		- Insert an element from the input one at a time into another
+		vector. Each time an element is inserted, check that it is
+		greater than the previous element. If it is less than the
+		previous element, move up the vector until it is greater
+		than its previous element. This is where the
+		element is inserted. Shift the elements behind it down one.
+		- Best Case Complexity is O(n). The first while loop will
+		iterate through all the elements regardless, but the while 
+		loop inside of it will not iterate if all the elements are 
+		already sorted.
+		- Worst Case Complexity is O(n^2). The first while loop will
+		iterate through all the elements regardless, but the while
+		loop inside of it will iterate through all of the elements
+		before it and shift the elements behind it by one if all the 
+		elements are in reverse order.
 
-2.  List of files with one/or two-line summary
-
-3.  How to compile it (saying "use included Makefile" is ok)
-
-4.  Outline of data structure (depending on the assignment)
-
-5.  Outline of algorithm (depending on the assignment)
-
-6.  A list of people who materially helped you on the assignment. If
-    you worked with a friend and you shared ideas, you need to 
-    list that person, e.g., "Josh Whedon helped me on this assignment".
-    You do not need to list TAs, or professors, but you may feel free
-    to do so.
-
-The ReadMe file shows the reader, in a quick glance, what the program is
-about and gives a general idea of how it works. For short programs the
-readme file will be short, for more complicated programs the readme file
-will be longer.
-
-Use outline form rather than long discursive paragraphs. A ReadMe file
-is an overview.
-
-There is no correct readme format; within these guidelines, devise your
-own style.
+ACKNOWLEDGEMENTS:
+	- Original credit goes to Tufts University.
