@@ -20,6 +20,7 @@ void readFile(string fileName, string type)
 	fileInput.open(fileName);
 	string line;
 	if(fileInput.is_open()) {
+		cout << "\n" << type << "\n";
 		while(getline(fileInput, line)) {
 			cout << line << '\n';
 		}
