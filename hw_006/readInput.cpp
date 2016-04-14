@@ -8,21 +8,32 @@
 #include <iostream>
 #include <fstream>
 #include <cstdlib>
+#include <string>
 
 #include "readInput.h"
 
 using namespace std;
 
-void readFile(string fileName, string type)
+void popStuCour(string file, HashTable &studentTable, HashTable &courseTable)
 {
 	//file of inputs
 	ifstream fileInput;
-	fileInput.open(fileName);
+	fileInput.open(file);
 	string line;
 	if(fileInput.is_open()) {
-		cout << "\n" << type << "\n";
 		while(getline(fileInput, line)) {
-			cout << line << '\n';
+			size_t pos = line.find(":");
+			string student = line.substr(0, pos);
+
+			//remove colon from course
+			string tempCourse = line.substr(pos + 1);
+			pos = tempCourse.find(":");
+			string course = tempCourse.substr(0, pos);
+			course += tempCourse.substr(pos + 1);
+
+
+			studentTable.insert(student, student);
+			courseTable.insert(course, course);
 		}
 		fileInput.close();
 	} else {
@@ -31,15 +42,28 @@ void readFile(string fileName, string type)
 
 }
 
-void readCommands(istream &input)
+void popTa(string file, HashTable &taTable)
 {
-	//commands
-	string command;
-	input >> command;
-	while(!input.fail() && command != "quit") {
-		cout << command << "\n";
-		cin >> command;
+	//file of inputs
+	ifstream fileInput;
+	fileInput.open(file);
+	string line;
+	if(fileInput.is_open()) {
+		while(getline(fileInput, line)) {
+			size_t pos = line.find(":");
+			string student = line.substr(0, pos);
+
+			//remove colon from course
+			string tempCourse = line.substr(pos + 1);
+			pos = tempCourse.find(":");
+			string course = tempCourse.substr(0, pos);
+			course += tempCourse.substr(pos + 1);
+
+
+			taTable.insert(student, student);
+		}
+		fileInput.close();
+	} else {
+		cerr << "Unable to open file.";
 	}
-
 }
-

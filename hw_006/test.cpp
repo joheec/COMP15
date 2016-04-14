@@ -23,26 +23,26 @@ void test_hashTable_insert_print()
 {
 	HashTable test;
 	cerr << "Insert Johee\n";
-	test.insert("Johee");
+	test.insert("Johee", "Johee");
 	cerr << "Print Johee\n";
-	test.print();
+	test.printTable();
 	cerr << "Insert Johee again\n";
-	test.insert("Johee");
+	test.insert("Johee", "Johee");
 	cerr << "Print Johee again\n";
-	test.print();
+	test.printTable();
 	cerr << "Insert 15S16\n";
-	test.insert("15S16");
+	test.insert("15S16", "15S16");
 	cerr << "Print 15S16\n";
-	test.print();
+	test.printTable();
 
 }
 
 void test_hashTable_loadFactor()
 {
 	HashTable test;
-	test.insert("Johee Chung");
-	test.print();
+	test.insert("Johee Chung", "Johee Chung");
+	test.printTable();
 	cerr << "\n";
 //	test.checkLoadFactor();
-	test.print();
+	test.printTable();
 }

@@ -19,12 +19,13 @@ public:
 	~HashTable();
 
 	//in insert check ratio of size and capacity
-	void insert(string value);
-	void print();
+	void insert(string key, string value);
+	void printTable();
 	bool search(string searchValue);
 //	void checkLoadFactor();
 private:
 	struct Node {
+		string key;
 		string value;
 		Node * next;
 	};

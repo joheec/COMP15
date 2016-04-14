@@ -8,9 +8,9 @@ LDFLAGS  = -g
 hw6degrees: main.o readInput.o test.o hashTable.o hashfunc.o
 	${CXX} ${CXXFLAGS} -o hw6degrees $^
 
-main.o:	main.cpp readInput.h test.h
+main.o:	main.cpp readInput.h test.h hashTable.h
 hashfunc.o: hashfunc.cpp hashfunc.h
-readInput.o: readInput.cpp readInput.h
+readInput.o: readInput.cpp readInput.h hashTable.h
 test.o: test.cpp test.h hashTable.h
 hashTable.o: hashTable.cpp hashTable.h hashfunc.h
 

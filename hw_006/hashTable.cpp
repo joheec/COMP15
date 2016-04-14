@@ -58,23 +58,24 @@ void HashTable::deleteHashTable()
 	delete [] hashTable;
 }
 
-void HashTable::insert(string value)
+void HashTable::insert(string key, string value)
 {
 	checkLoadFactor();
 
-	uint32_t key = hash_string(value) % capacity;
-	Node * temp = hashTable[key];
+	uint32_t tableKey = hash_string(key) % capacity;
+	Node * temp = hashTable[tableKey];
 	while(temp != NULL) {
-		if(temp->value == value) {
+		if(temp->key == key && temp->value == value) {
 			return;
 		}
 		temp = temp->next;
 	}
 
 	Node * newNode = new Node;
+	newNode->key = key;
 	newNode->value = value;
-	newNode->next = hashTable[key];
-	hashTable[key] = newNode;
+	newNode->next = hashTable[tableKey];
+	hashTable[tableKey] = newNode;
 
 	++size;
 
@@ -91,8 +92,9 @@ void HashTable::checkLoadFactor()
 	for(int i = 0; i < capacity; i++) {
 		currNode = hashTable[i];
 		while (currNode != NULL) {
-			uint32_t key = hash_string(currNode->value) % newCap;
+			uint32_t key = hash_string(currNode->key) % newCap;
 			Node * newNode = new Node;
+			newNode->key = currNode->key;
 			newNode->value = currNode->value;
 
 			newNode->next = newHashTable[key];
@@ -105,7 +107,7 @@ void HashTable::checkLoadFactor()
 	capacity = newCap;
 }
 
-void HashTable::print()
+void HashTable::printTable()
 {
 	Node * curr;
 	for(int i = 0; i < capacity; i++) {

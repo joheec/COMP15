@@ -3,25 +3,38 @@
 #include <assert.h>
 
 #include "readInput.h"
+#include "hashTable.h"
 #include "test.h"
 
 using namespace std;
 
 int main(int argc, char *argv[])
 {
-//	assert(argc == 3);
-//	readFile(argv[1], "student");
-//	readFile(argv[2], "ta");
+	assert(argc == 3);
+	HashTable studentTable;
+	HashTable courseTable;
+	popStuCour(argv[1], studentTable, courseTable);
+	popStuCour(argv[2], studentTable, courseTable);
 
-
-	(void) argc;
-	(void) argv[1];
-
-//	readCommands(cin);
+	//reading commands
+	string command;
+	cin >> command;
+	while(!cin.fail()) {
+		if(command == "quit") {
+			return 0;
+		} else if(command == "ls") {
+			studentTable.printTable();
+		} else if (command == "lc") {
+			courseTable.printTable();
+		} else {
+			cerr << "Unrecognized command.\n";
+		}
+		cin >> command;
+	}
 
 //	test_hashTable_create_delete();
 //	test_hashTable_insert_print();
-	test_hashTable_loadFactor();
+//	test_hashTable_loadFactor();
 
 	return 0;
 }
