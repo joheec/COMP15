@@ -22,6 +22,7 @@ public:
 	void insert(string value);
 	void print();
 	bool search(string searchValue);
+//	void checkLoadFactor();
 private:
 	struct Node {
 		string value;
