@@ -120,12 +120,17 @@ void HashTable::printTable()
 			cout << curr->value << "\n";
 			curr = curr->next;
 		}
-
 	}
 }
 
-bool HashTable::search(string searchValue)
+void HashTable::printSearchResults(string key)
 {
-	(void) searchValue;
-	return true;
+	uint32_t hashedKey = hash_string(key) % capacity;
+	Node * curr = hashTable[hashedKey];
+	while(curr != NULL) {
+		if(curr->key == key) {
+			cout << curr->value << "\n";
+		}
+		curr = curr->next;
+	}
 }

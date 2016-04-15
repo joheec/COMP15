@@ -1,6 +1,7 @@
 #include <iostream>
 #include <cstdlib>
 #include <assert.h>
+#include <string>
 
 #include "readInput.h"
 #include "hashTable.h"
@@ -11,10 +12,16 @@ using namespace std;
 int main(int argc, char *argv[])
 {
 	assert(argc == 3);
+
 	HashTable studentTable;
 	HashTable courseTable;
+	HashTable taTable;
+	HashTable rosterTable;
+
 	popStuCour(argv[1], studentTable, courseTable);
 	popStuCour(argv[2], studentTable, courseTable);
+	popTa(argv[1], taTable);
+	popRoster(argv[2], rosterTable);
 
 	//reading commands
 	string command;
@@ -26,7 +33,13 @@ int main(int argc, char *argv[])
 			studentTable.printTable();
 		} else if (command == "lc") {
 			courseTable.printTable();
-		} else {
+		} else if (command == "ta") {
+			cin >> command;
+			taTable.printSearchResults(command);
+		} else if (command == "roster") {
+			cin >> command;
+			rosterTable.printSearchResults(command);
+		}else {
 			cerr << "Unrecognized command.\n";
 		}
 		cin >> command;

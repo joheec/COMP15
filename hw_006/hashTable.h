@@ -21,7 +21,7 @@ public:
 	//in insert check ratio of size and capacity
 	void insert(string key, string value);
 	void printTable();
-	bool search(string searchValue);
+	void printSearchResults(string key);
 //	void checkLoadFactor();
 private:
 	struct Node {
