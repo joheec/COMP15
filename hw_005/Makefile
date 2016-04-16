@@ -22,7 +22,7 @@
 # cleaner.  Be sure to update the build rules and the list of files for
 # provide accordingly.
 #
-CXX      = clang++
+CXX      = g++
 CXXFLAGS = -Wall -Wextra -Wconversion -std=c++11 -g
 LDFLAGS  = -g
 

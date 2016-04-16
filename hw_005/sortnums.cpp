@@ -12,6 +12,7 @@
 
 #include <iostream>
 #include <cstdlib>
+#include <stdexcept>
 
 #include "sortnums.h"
 
