@@ -33,7 +33,7 @@ int main(int argc, char *argv[])
 			studentTable.printTable();
 		} else if (command == "lc") {
 			courseTable.printTable();
-		} else if (command == "ta") {
+		} else if (command == "taed") {
 			cin >> command;
 			taTable.printSearchResults(command);
 		} else if (command == "roster") {
