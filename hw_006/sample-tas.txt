@@ -4,3 +4,4 @@ George.Clooney:40:S14
 Jennifer.Lawrence:160:S16
 Kevin.Bacon:105:S16
 Meryl.Streep:15:F15
+Johee.Chung:21:F13

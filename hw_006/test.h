@@ -13,6 +13,7 @@ using namespace std;
 void test_hashTable_create_delete();
 void test_hashTable_insert_print();
 void test_hashTable_loadFactor();
+void test_graph_insertTa();
 
 
 #endif /* TEST_H_ */

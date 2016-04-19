@@ -5,3 +5,4 @@ Meryl.Streep:40:S14
 Tom.Cruise:11:F14
 Tom.Cruise:160:S16
 Tom.Cruise:105:S16
+Johee.Chung:21:F13

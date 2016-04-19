@@ -58,14 +58,14 @@ void HashTable::deleteHashTable()
 	delete [] hashTable;
 }
 
-void HashTable::insert(string key, string value)
+void HashTable::insertFirstValue(string key, string value1)
 {
 	checkLoadFactor();
 
 	uint32_t tableKey = hash_string(key) % capacity;
 	Node * temp = hashTable[tableKey];
 	while(temp != NULL) {
-		if(temp->key == key && temp->value == value) {
+		if(temp->key == key && temp->value1 == value1) {
 			return;
 		}
 		temp = temp->next;
@@ -73,12 +73,60 @@ void HashTable::insert(string key, string value)
 
 	Node * newNode = new Node;
 	newNode->key = key;
-	newNode->value = value;
+	newNode->value1 = value1;
+	newNode->value2 = "";
+	newNode->visited = false;
 	newNode->next = hashTable[tableKey];
 	hashTable[tableKey] = newNode;
 
 	++size;
 
+}
+
+void HashTable::insertSecondValue(string key, string value2)
+{
+	uint32_t hashKey = hash_string(key) % capacity;
+	Node * temp = hashTable[hashKey];
+	while(temp != NULL) {
+		if(temp->key == key && temp->value2 == "") {
+			temp->value2 = value2;
+		} else if(temp->key == key && temp->value2 != "") {
+			insert(key, temp->value1, value2);
+		}
+		temp = temp->next;
+	}
+}
+
+void HashTable::insert(string key, string value1, string value2)
+{
+	if(!entryExists(key, value1, value2)) {
+		checkLoadFactor();
+
+		uint32_t hashKey = hash_string(key) % capacity;
+		Node * newNode = new Node;
+		newNode->key = key;
+		newNode->value1 = value1;
+		newNode->value2 = value2;
+		newNode->visited = false;
+		newNode->next = hashTable[hashKey];
+		hashTable[hashKey] = newNode;
+
+		++size;
+	}
+}
+
+bool HashTable::entryExists(string key, string value1, string value2)
+{
+	uint32_t hashKey = hash_string(key) % capacity;
+	Node * temp = hashTable[hashKey];
+	while(temp != NULL) {
+		if(temp->key == key && temp->value1 == value1
+				&& temp->value2 == value2) {
+			return true;
+		}
+		temp = temp->next;
+	}
+	return false;
 }
 
 void HashTable::checkLoadFactor()
@@ -95,9 +143,11 @@ void HashTable::checkLoadFactor()
 			uint32_t key = hash_string(currNode->key) % newCap;
 			Node * newNode = new Node;
 			newNode->key = currNode->key;
-			newNode->value = currNode->value;
-
+			newNode->value1 = currNode->value1;
+			newNode->value2 = currNode->value2;
+			newNode->visited = currNode->visited;
 			newNode->next = newHashTable[key];
+
 			newHashTable[key] = newNode;
 			currNode = currNode->next;
 		}
@@ -117,7 +167,21 @@ void HashTable::printTable()
 //		cerr << "Print hashTable value: " << nullTest << "\n";
 
 		while (curr != NULL) {
-			cout << curr->value << "\n";
+			cout << curr->value1 << "\n";
+			curr = curr->next;
+		}
+	}
+}
+
+void HashTable::printGraph()
+{
+	Node * curr;
+	for(int i = 0; i < capacity; i++) {
+		curr = hashTable[i];
+		while(curr != NULL) {
+			if(curr->value2 != "") {
+				cout << curr->value1 <<  " +- " << curr->key << " -> " << curr->value2 << "\n";
+			}
 			curr = curr->next;
 		}
 	}
@@ -129,8 +193,20 @@ void HashTable::printSearchResults(string key)
 	Node * curr = hashTable[hashedKey];
 	while(curr != NULL) {
 		if(curr->key == key) {
-			cout << curr->value << "\n";
+			cout << curr->value1 << "\n";
 		}
 		curr = curr->next;
+	}
+}
+
+void HashTable::resetVisited()
+{
+	Node * temp;
+	for(int i = 0; i < capacity; i++) {
+		temp = hashTable[i];
+		while(temp != NULL) {
+			temp->visited = false;
+			temp = temp->next;
+		}
 	}
 }

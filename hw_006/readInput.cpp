@@ -25,8 +25,8 @@ void popStuCour(string file, HashTable &studentTable, HashTable &courseTable)
 			string student;
 			string course;
 			breakupString(line, student, course);
-			studentTable.insert(student, student);
-			courseTable.insert(course, course);
+			studentTable.insertFirstValue(student, student);
+			courseTable.insertFirstValue(course, course);
 		}
 		fileInput.close();
 	} else {
@@ -35,7 +35,7 @@ void popStuCour(string file, HashTable &studentTable, HashTable &courseTable)
 
 }
 
-void popTa(string file, HashTable &taTable)
+void popTa(string file, HashTable &taTable, Graph &graph)
 {
 	//file of inputs
 	ifstream fileInput;
@@ -46,7 +46,8 @@ void popTa(string file, HashTable &taTable)
 			string student;
 			string course;
 			breakupString(line, student, course);
-			taTable.insert(student, course);
+			taTable.insertFirstValue(student, course);
+			graph.insertTaCourse(student, course);
 		}
 		fileInput.close();
 	} else {
@@ -54,7 +55,7 @@ void popTa(string file, HashTable &taTable)
 	}
 }
 
-void popRoster(string file, HashTable &rosterTable)
+void popRoster(string file, HashTable &rosterTable, Graph &graph)
 {
 	//file of inputs
 	ifstream fileInput;
@@ -65,7 +66,8 @@ void popRoster(string file, HashTable &rosterTable)
 			string student;
 			string course;
 			breakupString(line, student, course);
-			rosterTable.insert(course, student);
+			rosterTable.insertFirstValue(course, student);
+			graph.insertStudentCourse(student, course);
 		}
 		fileInput.close();
 	} else {

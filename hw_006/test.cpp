@@ -9,6 +9,7 @@
 
 #include "test.h"
 #include "hashTable.h"
+#include "graph.h"
 
 using namespace std;
 
@@ -23,15 +24,15 @@ void test_hashTable_insert_print()
 {
 	HashTable test;
 	cerr << "Insert Johee\n";
-	test.insert("Johee", "Johee");
+	test.insertFirstValue("Johee", "Johee");
 	cerr << "Print Johee\n";
 	test.printTable();
 	cerr << "Insert Johee again\n";
-	test.insert("Johee", "Johee");
+	test.insertFirstValue("Johee", "Johee");
 	cerr << "Print Johee again\n";
 	test.printTable();
 	cerr << "Insert 15S16\n";
-	test.insert("15S16", "15S16");
+	test.insertFirstValue("15S16", "15S16");
 	cerr << "Print 15S16\n";
 	test.printTable();
 
@@ -40,9 +41,15 @@ void test_hashTable_insert_print()
 void test_hashTable_loadFactor()
 {
 	HashTable test;
-	test.insert("Johee Chung", "Johee Chung");
+	test.insertFirstValue("Johee Chung", "Johee Chung");
 	test.printTable();
 	cerr << "\n";
 //	test.checkLoadFactor();
 	test.printTable();
 }
+
+//void test_graph_insertTa()
+//{
+//	Graph graph;
+//	graph.insertTa("15S15", "Johee.Chung");
+//}
