@@ -35,19 +35,24 @@ public:
 
 
 private:
-	struct Node {
-		string ta;
+	struct STUDENT {
 		string student;
 		string course;
+		STUDENT * next;
+	};
+	struct TA {
+		string ta;
+		STUDENT * students;
+		vector<string> courses;
 		bool visited;
-		Node * next;
+		TA * next;
 	};
 
 	static const int INITIAL_CAPACITY = 10;
 	int capacity;
 	int size;
 
-	Node ** graph;
+	TA ** graph;
 
 	void createGraph(int cap);
 	void deleteGraph();

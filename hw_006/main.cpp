@@ -25,7 +25,6 @@ int main(int argc, char *argv[])
 	popTa(argv[1], taTable, graph);
 	popRoster(argv[2], rosterTable, graph);
 	graph.removeStudentlessTas();
-	graph.printGraph();
 	graph.printPath("Johee.Chung", "Johee.Chung");
 	graph.printPath("Meryl.Streep", "Kevin.Bacon");
 	graph.printPath("Brad.Pitt", "Meryl.Streep");
