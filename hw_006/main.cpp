@@ -41,7 +41,7 @@ int main(int argc, char *argv[])
 			courseTable.printTable();
 		} else if (command == "taed") {
 			cin >> command;
-			if(taTable.keyExist(command)) {
+			if(studentTable.keyExist(command)) {
 				taTable.printSearchResults(command);
 			} else {
 				cout << "Student not found\n";
