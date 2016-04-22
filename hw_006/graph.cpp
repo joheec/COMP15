@@ -344,7 +344,6 @@ void Graph::resetVisited()
  */
 void Graph::printAllPaths(string ta, string student)
 {
-	resetVisited();
 	vector<string> path;
 	path.push_back(ta);
 	printAllPathsHelper(ta, student, path);
@@ -367,12 +366,12 @@ vector<string> Graph::printAllPathsHelper(string ta, string student, vector<stri
 		}
 		currTa = currTa->next;
 	}
-	//returns without printing if current path cannot find target student
-	if(currTa == NULL || currTa->visited) {
+
+	//returns without printing if current path cannot find ta
+	if(currTa == NULL) {
 		return path;
 	}
 
-	currTa->visited = true;
 	STUDENT * currStudent = currTa->students;
 	//recursively sets currStudent as TA to continue path
 	while(currStudent != NULL) {
@@ -384,6 +383,12 @@ vector<string> Graph::printAllPathsHelper(string ta, string student, vector<stri
 			cout << " +- " + currStudent->course + " -> " + currStudent->student + "\n";
 			currStudent = currStudent->next;
 			continue;
+		}
+		//checks if student was already visited
+		for(size_t i = 0; i < path.size(); i=i+2) {
+			if(path[i] == currTa->ta) {
+				continue;
+			}
 		}
 
 		path.push_back(" +- " + currStudent->course + " -> ");
@@ -399,7 +404,6 @@ vector<string> Graph::printAllPathsHelper(string ta, string student, vector<stri
 			}
 			visitedStudent = visitedStudent->next;
 		}
-		visitedStudent->visited = false;
 
 		currStudent = currStudent->next;
 	}
