@@ -369,6 +369,8 @@ vector<string> Graph::printAllPathsHelper(string ta, string student, vector<stri
 
 	//returns without printing if current path cannot find ta
 	if(currTa == NULL) {
+		path[path.size()-1] = "";
+		path[path.size()-2] = "";
 		return path;
 	}
 
