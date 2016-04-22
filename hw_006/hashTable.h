@@ -9,6 +9,8 @@
 #define HASHTABLE_H_
 
 #include <iostream>
+#include <string>
+#include <vector>
 
 using namespace std;
 
@@ -18,24 +20,17 @@ public:
 	HashTable(int cap);
 	~HashTable();
 
-	//in insert check ratio of size and capacity
-	void insertFirstValue(string key, string value1);
-	void insertSecondValue(string key, string value2);
-	void insert(string key, string value1, string value2);
-	bool entryExists(string key, string value1, string value2);
+	void insert(string key, string value);
+	bool keyExist(string key);
 	void printTable();
-	void printGraph();
 	void printSearchResults(string key);
-	void resetVisited();
 
 
 
 private:
 	struct Node {
 		string key;
-		string value1;
-		string value2;
-		bool visited;
+		vector<string> values;
 		Node * next;
 	};
 
@@ -48,7 +43,6 @@ private:
 	void createHashTable(int cap);
 	void deleteHashTable();
 	void checkLoadFactor();
-	void resizeHashTable();
 };
 
 

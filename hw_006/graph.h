@@ -22,15 +22,11 @@ public:
 	Graph(int cap);
 	~Graph();
 
-	//in insert check ratio of size and capacity
 	void insertTaCourse(string ta, string course);
 	void insertStudentCourse(string student, string course);
-	void insert(string ta, string student, string course);
-	bool entryExists(string ta, string student, string course);
 	void removeStudentlessTas();
-	void printGraph();
-	void printPath(string ta, string student);
-//	void printSearchResults(string key);
+	void printShortestPath(string ta, string student);
+	void printAllPaths(string ta, string student);
 
 
 
@@ -56,9 +52,13 @@ private:
 
 	void createGraph(int cap);
 	void deleteGraph();
+	void deleteTaStudents(TA * taNode);
 	void checkLoadFactor();
 	void resetVisited();
 	string printPathHelper(string student, queue<string> &q);
+	vector<string> printAllPathsHelper(string ta, string student,
+			vector<string> &path);
+
 };
 
 
