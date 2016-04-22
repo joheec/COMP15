@@ -1,8 +1,15 @@
 /*
- * graph.h
+ * File graph.h
+ * Name: Johee Chung
+ * Due: April 21, 2016
+ * Assignment: Homework 6 / Degrees of Separation
+ * Class: Comp 15
  *
- *  Created on: Apr 18, 2016
- *      Author: johee
+ * A graph adjacency list with functions to populate the graph,
+ * increase the capacity of the graph, and display information
+ * about the graph. Such information includes the shortest
+ * path between two students and all the paths between
+ * two students.
  */
 
 #ifndef GRAPH_H_

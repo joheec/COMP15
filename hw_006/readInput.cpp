@@ -1,8 +1,12 @@
 /*
- * readInput.cpp
+ * File: readInput.cpp
+ * Name: Johee Chung
+ * Due: April 21, 2016
+ * Assignment: Homework 6 / Degree of Separation
+ * Class: Comp 15
  *
- *  Created on: Apr 12, 2016
- *      Author: johee
+ * Reads inputs from files and uses them to populate
+ * tables and a graph.
  */
 
 #include <iostream>
@@ -26,7 +30,7 @@ void popStuCour(string file, HashTable &studentTable, HashTable &courseTable)
 {
 	//file of inputs
 	ifstream fileInput;
-	fileInput.open(file);
+	fileInput.open(file.c_str());
 
 	string line;
 	if(fileInput.is_open()) {
@@ -57,7 +61,7 @@ void popTaGraph(string file, HashTable &taTable, Graph &graph)
 {
 	//file of inputs
 	ifstream fileInput;
-	fileInput.open(file);
+	fileInput.open(file.c_str());
 
 	string line;
 	if(fileInput.is_open()) {
@@ -87,7 +91,7 @@ void popRosterGraph(string file, HashTable &rosterTable, Graph &graph)
 {
 	//file of inputs
 	ifstream fileInput;
-	fileInput.open(file);
+	fileInput.open(file.c_str());
 
 	string line;
 	if(fileInput.is_open()) {

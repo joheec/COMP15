@@ -20,6 +20,6 @@ clean:
 
 provide:
 	provide comp15 hw6 main.cpp Makefile ReadMe.md \
-	readInput.cpp readInput.h test.cpp test.h\
-	hashfunc.cpp hashfunc.h hashTable.cpp hashTable.h graph.cpp graph.h\
+	readInput.cpp readInput.h test.cpp test.h \
+	hashfunc.cpp hashfunc.h hashTable.cpp hashTable.h graph.cpp graph.h \
 	

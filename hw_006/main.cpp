@@ -1,3 +1,16 @@
+/*
+ * File: main.cpp
+ * Name: Johee Chung
+ * Due: April 21, 2016
+ * Assignment: Homework 6 / Degree of Separation
+ * Class: Comp 15
+ *
+ * A main function that takes inputs from two files
+ * and the command line. Input from the command line
+ * calls functions to produce information about the
+ * file inputs.
+ */
+
 #include <iostream>
 #include <cstdlib>
 #include <assert.h>

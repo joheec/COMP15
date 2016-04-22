@@ -1,8 +1,12 @@
 /*
- * readInput.h
+ * File: readInput.h
+ * Name: Johee Chung
+ * Due: April 21, 2016
+ * Assignment: Homework 6 / Degree of Separation
+ * Class: Comp 15
  *
- *  Created on: Apr 12, 2016
- *      Author: johee
+ * Reads inputs from files and uses them to populate
+ * tables and a graph.
  */
 
 #ifndef READINPUT_H_

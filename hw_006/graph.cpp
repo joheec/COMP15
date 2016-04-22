@@ -1,8 +1,15 @@
 /*
- * graph.cpp
+ * File graph.cpp
+ * Name: Johee Chung
+ * Due: April 21, 2016
+ * Assignment: Homework 6 / Degrees of Separation
+ * Class: Comp 15
  *
- *  Created on: Apr 18, 2016
- *      Author: johee
+ * A graph adjacency list with functions to populate the graph,
+ * increase the capacity of the graph, and display information
+ * about the graph. Such information includes the shortest
+ * path between two students and all the paths between
+ * two students.
  */
 
 #include <iostream>
@@ -152,6 +159,21 @@ void Graph::insertStudentCourse(string student, string course)
 			//adds STUDENT to TA's students if TA taught the course
 			for(size_t j = 0; j < currTa->courses.size(); j++) {
 				if(currTa->courses[j] == course) {
+					//does not add student if already exists
+					bool repeated = false;
+					STUDENT * currStudent = currTa->students;
+					while(currStudent != NULL) {
+						if(currStudent->student == student &&
+							currStudent->course == course) {
+							repeated = true;
+							break;
+						}
+						currStudent = currStudent->next;
+					}
+					if(repeated) {
+						break;
+					}
+
 					STUDENT * newStudent = new STUDENT;
 					newStudent->student = student;
 					newStudent->course = course;
@@ -286,11 +308,12 @@ void Graph::printShortestPath(string ta, string student)
 
 		uint32_t hashedKey = hash_string(currTa) % capacity;
 		TA * graphTa = graph[hashedKey];
-
+		if(graphTa != NULL) {
+			graphTa->visited = true;
+		}
 		while(graphTa != NULL) {
 			//finds ta in graph
 			if(graphTa->ta == currTa) {
-				graphTa->visited = true;
 				STUDENT * currStudent = graphTa->students;
 				while(currStudent != NULL) {
 					//if finds target student, prints out entire path
@@ -367,10 +390,14 @@ vector<string> Graph::printAllPathsHelper(string ta, string student, vector<stri
 		currTa = currTa->next;
 	}
 
-	//returns without printing if current path cannot find ta
+	//cannot find ta. removes ta (and course) from path
 	if(currTa == NULL) {
-		path[path.size()-1] = "";
-		path[path.size()-2] = "";
+		if(path.size() == 1) {
+			path.pop_back();
+		} else if(path.size() > 1) {
+			path.pop_back();
+			path.pop_back();
+		}
 		return path;
 	}
 
@@ -386,19 +413,29 @@ vector<string> Graph::printAllPathsHelper(string ta, string student, vector<stri
 			currStudent = currStudent->next;
 			continue;
 		}
+
 		//checks if student was already visited
+		bool visited = false;
 		for(size_t i = 0; i < path.size(); i=i+2) {
-			if(path[i] == currTa->ta) {
-				continue;
+			if(path[i] == currStudent->student) {
+				visited = true;
+				break;
 			}
+		}
+		if(visited) {
+			currStudent = currStudent->next;
+			continue;
 		}
 
 		path.push_back(" +- " + currStudent->course + " -> ");
 		path.push_back(currStudent->student);
 		printAllPathsHelper(currStudent->student, student, path);
 
-		path[path.size()-1] = "";
-		path[path.size()-2] = "";
+		//removes student and course to check another student
+		if (path.size() > 1) {
+			path.pop_back();
+			path.pop_back();
+		}
 
 		currStudent = currStudent->next;
 	}

@@ -1,8 +1,15 @@
 /*
- * hashTable.cpp
+ * File hashTable.cpp
+ * Name: Johee Chung
+ * Due: April 21, 2016
+ * Assignment: Homework 6 / Degrees of Separation
+ * Class: Comp 15
  *
- *  Created on: Apr 12, 2016
- *      Author: johee
+ * A hash table. Collision is handled with chaining.
+ * Can insert key-value pairs, look up values with a key,
+ * and print the table. When the size is greater than
+ * or equal to 4 * capacity + 1, the capacity increases
+ * (capacity * 2 + 1).
  */
 
 #include <iostream>
