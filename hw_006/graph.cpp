@@ -397,15 +397,8 @@ vector<string> Graph::printAllPathsHelper(string ta, string student, vector<stri
 		path.push_back(currStudent->student);
 		printAllPathsHelper(currStudent->student, student, path);
 
-		//find currStudent and mark not visited for other paths
-		hashedKey = hash_string(currStudent->student) % capacity;
-		TA * visitedStudent = graph[hashedKey];
-		while(visitedStudent != NULL) {
-			if(visitedStudent->ta == currStudent->student) {
-				break;
-			}
-			visitedStudent = visitedStudent->next;
-		}
+		path[path.size()-1] = "";
+		path[path.size()-2] = "";
 
 		currStudent = currStudent->next;
 	}
