@@ -379,7 +379,7 @@ void Graph::printAllPaths(string ta, string student)
  * 		string student - Target student
  * 		vector<string> &path - Path
  */
-vector<string> Graph::printAllPathsHelper(string ta, string student, vector<string> &path)
+void Graph::printAllPathsHelper(string ta, string student, vector<string> path)
 {
 	uint32_t hashedKey = hash_string(ta) % capacity;
 	TA * currTa = graph[hashedKey];
@@ -392,13 +392,7 @@ vector<string> Graph::printAllPathsHelper(string ta, string student, vector<stri
 
 	//cannot find ta. removes ta (and course) from path
 	if(currTa == NULL) {
-		if(path.size() == 1) {
-			path.pop_back();
-		} else if(path.size() > 1) {
-			path.pop_back();
-			path.pop_back();
-		}
-		return path;
+		return;
 	}
 
 	STUDENT * currStudent = currTa->students;
@@ -426,19 +420,13 @@ vector<string> Graph::printAllPathsHelper(string ta, string student, vector<stri
 			currStudent = currStudent->next;
 			continue;
 		}
-
-		path.push_back(" +- " + currStudent->course + " -> ");
-		path.push_back(currStudent->student);
-		printAllPathsHelper(currStudent->student, student, path);
-
-		//removes student and course to check another student
-		if (path.size() > 1) {
-			path.pop_back();
-			path.pop_back();
-		}
+		vector<string> newPath = path;
+		newPath.push_back(" +- " + currStudent->course + " -> ");
+		newPath.push_back(currStudent->student);
+		printAllPathsHelper(currStudent->student, student, newPath);
 
 		currStudent = currStudent->next;
 	}
 
-	return path;
+	return;
 }

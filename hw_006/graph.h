@@ -63,8 +63,8 @@ private:
 	void checkLoadFactor();
 	void resetVisited();
 	string printPathHelper(string student, queue<string> &q);
-	vector<string> printAllPathsHelper(string ta, string student,
-			vector<string> &path);
+	void printAllPathsHelper(string ta, string student,
+			vector<string> path);
 
 };
 
