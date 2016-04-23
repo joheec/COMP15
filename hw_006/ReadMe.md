@@ -45,20 +45,17 @@ ALGORITHM:
 		students.
 	- Print All Paths
 		- Uses DFS: Insert the original TA at the back of a vector
-		of strings. Find the TA in the hashed table. If the TA 
-		doesn't exist, remove the last entry of the path (if not the
-		first time through the function, remove the last 2 entries:
-		course and student name) and return path. If TA is found, add 
-		go through all of the students the TA directly taught (while
-		loop). If the student is the target student, print the path, 
-		the course, and the student, and go to the next student. If the
-		student was already visited, go to the next student. If they
-		are neither the target nor was visited, insert the course and
-		and student to the end of path, and recursively call the
-		function again to look up the ta in the hashed table. Once
-		the base cases are reached (cannot find TA), remove the last 
-		2 entries from path (course and student name), and continue
-		the student while loop.
+		of strings (path). Find the TA in the hashed table. If the TA 
+		doesn't exist, return. If TA is found, go through all of the 
+		students the TA directly taught using a while loop. If 
+		the student is the target student, print the path, the course, 
+		and the student, and go to the TA's next student. If the
+		student was already visited, go to the TA's next student. If 
+		they are neither the target nor was visited, insert the course
+		and student to the end of the copied path, which is then passed
+		recursively, looking up the new ta in the hashed table. Once
+		the base cases are reached, returns back to the while loop
+		and continues with the rest of the TA's students.
 		- - Best Case Complexity is O(E). All TAs and students have a
 		one-to-one relationship, and none of the TAs share the same
 		index.
