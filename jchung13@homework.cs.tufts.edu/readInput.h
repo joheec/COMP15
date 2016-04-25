@@ -17,10 +17,8 @@
 
 using namespace std;
 
-//void popStuCour(string file, HashTable &studentTable, HashTable &courseTable);
-void popStu(string file, HashTable &studentTable);
-//void popGraph(string file, HashTable &taTable, Graph &graph);
-void popGraph(string file, Graph &graph);
+void popStuCour(string file, HashTable &studentTable, HashTable &courseTable);
+void popTaGraph(string file, HashTable &taTable, Graph &graph);
 void popRosterGraph(string file, HashTable &rosterTable, Graph &graph);
 
 void breakupString(string line, string &student, string &course);

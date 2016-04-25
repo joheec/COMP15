@@ -27,14 +27,18 @@ int main(int argc, char *argv[])
 {
 	assert(argc == 3);
 	HashTable studentTable;
+	HashTable courseTable;
+	HashTable taTable;
 	HashTable rosterTable;
 	Graph graph;
 
 	//populate tables and graph
-	popStu(argv[1], studentTable);
-	popStu(argv[2], studentTable);
-	popGraph(argv[2], graph);
-	popRosterGraph(argv[1], rosterTable, graph);
+	popStuCour(argv[1], studentTable, courseTable);
+	popStuCour(argv[2], studentTable, courseTable);
+	popTaGraph(argv[1], taTable, graph);
+	popRosterGraph(argv[2], rosterTable, graph);
+	//clean up graph
+	graph.removeStudentlessTas();
 
 	//reading commands
 	string startStudent;
@@ -47,11 +51,11 @@ int main(int argc, char *argv[])
 		} else if(command == "ls") {
 			studentTable.printTable();
 		} else if (command == "lc") {
-			rosterTable.printKeys();
+			courseTable.printTable();
 		} else if (command == "taed") {
 			cin >> command;
 			if(studentTable.keyExist(command)) {
-				graph.printTaedCourses(command);
+				taTable.printSearchResults(command);
 			} else {
 				cout << "Student not found\n";
 			}

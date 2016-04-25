@@ -105,7 +105,6 @@ void HashTable::insert(string key, string value)
 			return;
 		}
 		temp = temp->next;
-//		printTable();
 	}
 
 	//creates new node if key and value do not exist
@@ -131,25 +130,21 @@ void HashTable::checkLoadFactor()
 		return;
 	}
 	int newCap = capacity * 2 + 1;
-	Node ** newHashTable = new Node*[newCap];
+	//inserts keys and values into new hash table
+	HashTable newHashTable(newCap);
 	Node * currNode;
 	for(int i = 0; i < capacity; i++) {
 		currNode = hashTable[i];
 		while (currNode != NULL) {
-			Node * newNode = new Node;
-			newNode->key = currNode->key;
-			newNode->values = currNode->values;
-			uint32_t hashedKey = hash_string(newNode->key) % newCap;
-
-			newNode->next = newHashTable[hashedKey];
-			newHashTable[hashedKey] = newNode;
+			for(size_t i = 0; i < currNode->values.size(); i++) {
+				newHashTable.insert(currNode->key, currNode->values[i]);
+			}
 			currNode = currNode->next;
 		}
 	}
 	//replaces this hash table with new hash table
 	deleteHashTable();
-	hashTable = newHashTable;
-	capacity = newCap;
+	*this = newHashTable;
 }
 
 /*
@@ -211,24 +206,6 @@ void HashTable::printSearchResults(string key)
 			return;
 		}
 		curr = curr->next;
-	}
-}
-
-/*
- * Prints all the keys
- *
- * @parameter	void
- * @return	void
- */
-void HashTable::printKeys()
-{
-	Node * curr;
-	for(int i = 0; i < capacity; i++) {
-		curr = hashTable[i];
-		while (curr != NULL) {
-			cout << curr->key + "\n";
-			curr = curr->next;
-		}
 	}
 }
 

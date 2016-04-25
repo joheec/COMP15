@@ -110,6 +110,7 @@ void Graph::deleteTaStudents(TA * taNode)
  */
 void Graph::insertTaCourse(string ta, string course)
 {
+	//check whether to increase capacity
 	checkLoadFactor();
 
 	uint32_t hashedKey = hash_string(ta) % capacity;
@@ -162,7 +163,8 @@ void Graph::insertStudentCourse(string student, string course)
 					bool repeated = false;
 					STUDENT * currStudent = currTa->students;
 					while(currStudent != NULL) {
-						if(currStudent->student == student && currStudent->course == course) {
+						if(currStudent->student == student &&
+							currStudent->course == course) {
 							repeated = true;
 							break;
 						}
@@ -171,6 +173,7 @@ void Graph::insertStudentCourse(string student, string course)
 					if(repeated) {
 						break;
 					}
+
 					STUDENT * newStudent = new STUDENT;
 					newStudent->student = student;
 					newStudent->course = course;
@@ -180,6 +183,45 @@ void Graph::insertStudentCourse(string student, string course)
 				}
 			}
 			currTa = currTa->next;
+		}
+	}
+}
+
+/*
+ * Removes a TA who does not have any STUDENTS
+ *
+ * @parameter	void
+ * @return	void
+ */
+void Graph::removeStudentlessTas()
+{
+	TA * currTa;
+	TA * prevTa;
+	for(int i = 0; i < capacity; i++) {
+		//deletes first TA in chain if doesn't have STUDENTs
+		while(graph[i] != NULL && graph[i]->students == NULL) {
+			currTa = graph[i];
+			graph[i] = currTa->next;
+			deleteTaStudents(currTa);
+			delete currTa;
+		}
+
+		//deletes TAs from remaining chain that don't have STUDENTs
+		prevTa = graph[i];
+		currTa = NULL;
+		if(graph[i] != NULL) {
+			currTa = graph[i]->next;
+		}
+		while(currTa != NULL) {
+			if(currTa->students == NULL) {
+				prevTa->next = currTa->next;
+				deleteTaStudents(currTa);
+				delete currTa;
+				currTa = prevTa->next;
+			} else {
+				prevTa = currTa;
+				currTa = currTa->next;
+			}
 		}
 	}
 }
@@ -211,6 +253,7 @@ void Graph::checkLoadFactor()
 			newTa->ta = currTa->ta;
 			STUDENT * currStudent = currTa->students;
 
+			//copies STUDENTs
 			while(currStudent != NULL) {
 				STUDENT * newStudent = new STUDENT;
 				newStudent->student = currStudent->student;
@@ -219,18 +262,19 @@ void Graph::checkLoadFactor()
 				//insert newStudent into newTa
 				newStudent->next = newTa->students;
 				newTa->students = newStudent;
+
 				currStudent = currStudent->next;
 			}
-			if(currTa->students == NULL) {
-				newTa->students = NULL;
-			}
+
 			//copies TA
 			newTa->courses = currTa->courses;
 			newTa->visited = currTa->visited;
+
 			//insert newTa into newGraph
 			uint32_t hashedKey = hash_string(currTa->ta) % newCap;
 			newTa->next = newGraph[hashedKey];
 			newGraph[hashedKey] = newTa;
+
 			currTa = currTa->next;
 		}
 	}
@@ -386,40 +430,3 @@ void Graph::printAllPathsHelper(string ta, string student, vector<string> path)
 
 	return;
 }
-
-/**
- * Prints all the courses a student has TAed
- *
- * @parameter	string ta - TA whose course will be printed
- * @return	void
- */
-void Graph::printTaedCourses(string ta)
-{
-	uint32_t hashedKey = hash_string(ta) % capacity;
-	TA * temp;
-	temp = graph[hashedKey];
-	while(temp != NULL) {
-		if(temp->ta == ta) {
-			for(size_t i = 0; i < temp->courses.size(); i++) {
-				cout << temp->courses[i] + "\n";
-			}
-			return;
-		}
-		temp = temp->next;
-	}
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

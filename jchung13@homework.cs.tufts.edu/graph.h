@@ -28,14 +28,12 @@ public:
 	Graph();
 	Graph(int cap);
 	~Graph();
-	Graph(const Graph &source);
-	Graph &operator=(const Graph &rhs);
 
 	void insertTaCourse(string ta, string course);
 	void insertStudentCourse(string student, string course);
+	void removeStudentlessTas();
 	void printShortestPath(string ta, string student);
 	void printAllPaths(string ta, string student);
-	void printTaedCourses(string ta);
 
 
 

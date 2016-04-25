@@ -19,13 +19,14 @@
 using namespace std;
 
 /*
- * Populates student hash table with inputs from a file
+ * Populates student and course hash tables with inputs from a file
  *
  * @parameter	string file - Name of file with input values
  * 		HashTable &studentTable - Reference to table with students
+ * 		HashTable & courseTable - Reference to table with courses
  * @return	void
  */
-void popStu(string file, HashTable &studentTable)
+void popStuCour(string file, HashTable &studentTable, HashTable &courseTable)
 {
 	//file of inputs
 	ifstream fileInput;
@@ -39,25 +40,24 @@ void popStu(string file, HashTable &studentTable)
 			string course;
 			breakupString(line, student, course);
 			studentTable.insert(student, student);
+			courseTable.insert(course, course);
 		}
 		fileInput.close();
 	} else {
 		cerr << "Unable to open file.";
 	}
-	//Segmentation fault: 11 will randomly appear with large data set.
-	//cerr of empty string seems to reduce segmentation fault.
-	cerr << "";
 
 }
 
 /*
- * Populates graph hash table with inputs from a file
+ * Populates TA and graph hash tables with inputs from a file
  *
  * @parameter	string file - Name of file with input values
+ * 		HashTable &taTable - Reference to table with TAs
  * 		Graph &graph - Reference to table that represents a graph
  * @return	void
  */
-void popGraph(string file, Graph &graph)
+void popTaGraph(string file, HashTable &taTable, Graph &graph)
 {
 	//file of inputs
 	ifstream fileInput;
@@ -70,6 +70,7 @@ void popGraph(string file, Graph &graph)
 			string student;
 			string course;
 			breakupString(line, student, course);
+			taTable.insert(student, course);
 			graph.insertTaCourse(student, course);
 		}
 		fileInput.close();

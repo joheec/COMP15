@@ -31,7 +31,6 @@ public:
 	bool keyExist(string key);
 	void printTable();
 	void printSearchResults(string key);
-	void printKeys();
 
 
 
