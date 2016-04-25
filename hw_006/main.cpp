@@ -28,11 +28,12 @@ int main(int argc, char *argv[])
 	assert(argc == 3);
 	HashTable studentTable;
 	HashTable rosterTable;
+	HashTable courseTable;
 	Graph graph;
 
 	//populate tables and graph
-	popStu(argv[1], studentTable);
-	popStu(argv[2], studentTable);
+	popStu(argv[1], studentTable, courseTable);
+	popStu(argv[2], studentTable, courseTable);
 	popGraph(argv[2], graph);
 	popRosterGraph(argv[1], rosterTable, graph);
 
@@ -47,7 +48,7 @@ int main(int argc, char *argv[])
 		} else if(command == "ls") {
 			studentTable.printTable();
 		} else if (command == "lc") {
-			rosterTable.printKeys();
+			courseTable.printTable();
 		} else if (command == "taed") {
 			cin >> command;
 			if(studentTable.keyExist(command)) {

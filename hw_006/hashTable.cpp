@@ -214,21 +214,21 @@ void HashTable::printSearchResults(string key)
 	}
 }
 
-/*
- * Prints all the keys
- *
- * @parameter	void
- * @return	void
- */
-void HashTable::printKeys()
-{
-	Node * curr;
-	for(int i = 0; i < capacity; i++) {
-		curr = hashTable[i];
-		while (curr != NULL) {
-			cout << curr->key + "\n";
-			curr = curr->next;
-		}
-	}
-}
-
+///*
+// * Prints all the keys
+// *
+// * @parameter	void
+// * @return	void
+// */
+//void HashTable::printKeys()
+//{
+//	Node * curr;
+//	for(int i = 0; i < capacity; i++) {
+//		curr = hashTable[i];
+//		while (curr != NULL) {
+//			cout << curr->key + "\n";
+//			curr = curr->next;
+//		}
+//	}
+//}
+//

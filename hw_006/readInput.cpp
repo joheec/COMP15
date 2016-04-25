@@ -25,7 +25,7 @@ using namespace std;
  * 		HashTable &studentTable - Reference to table with students
  * @return	void
  */
-void popStu(string file, HashTable &studentTable)
+void popStu(string file, HashTable &studentTable, HashTable &courseTable)
 {
 	//file of inputs
 	ifstream fileInput;
@@ -39,13 +39,14 @@ void popStu(string file, HashTable &studentTable)
 			string course;
 			breakupString(line, student, course);
 			studentTable.insert(student, student);
+			courseTable.insert(course, course);
 		}
 		fileInput.close();
 	} else {
 		cerr << "Unable to open file.";
 	}
 	//Segmentation fault: 11 will randomly appear with large data set.
-	//cerr of empty string seems to reduce segmentation fault.
+	//cerr of empty string seems to reduce the likelihood of fault
 	cerr << "";
 
 }
